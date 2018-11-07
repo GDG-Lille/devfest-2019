@@ -12,8 +12,8 @@ Nothing to do, [Circle CI](https://circleci.com/gh/GDG-Lille) does it :) (@see .
 
 ## How to run in local ?
 
-Run `npm install -g firebase-tools` to install Firebase SDK
-Run `firebase serve` to deploy a dev server.
+* Run `npm install -g firebase-tools` to install Firebase SDK
+* Run `firebase serve` to deploy a dev server.
 
 ## Contact via [Issues](https://github.com/GDG-Lille/devfest-2019/issues)
 Helpful for **question**, **bug** and **contribution request**.
