@@ -1,0 +1,22 @@
+:root {
+  --body-text: #000;
+  --body-bg: #FFF;
+  --text-inv: #FFF;
+
+  --main-color: #43AAAF;
+  --main-color-d: #26828E;
+  --main-color-sd: #196C70;
+  --main-color-light: #CEE6E8;
+  --hot-color: #F37D11;
+  --hot-light: #F4E558;
+  --hot-sweet: #CC66AC;
+  --aux-1: #217189;
+  --aux-2: #AF1447;
+  --n-dark: #1C2C44;
+  --n-light: #EFEFEF;
+
+  --stack: barlow_semi_condensedregular, Calibri, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
+  --stack-b: barlow_semi_condensedbold, Calibri, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
+  --stack-i: barlow_semi_condenseditalic, Calibri, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
+  --stack-t: boogalooregular, Calibri, Roboto, "Droid Sans", Helvetica, Arial, sans-serif;
+}

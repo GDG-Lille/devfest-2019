@@ -1,0 +1,225 @@
+/* --------------------------------------------------------------------
+               	DEVFEST LILLE 2019
+               		Media Queries
+          				Ge Ricci, 2018
+-------------------------------------------------------------------- */
+
+@media screen and (min-width: 580px) {
+  footer .content {display: flex; justify-content: space-between;}
+  dl.h-event {flex-basis: 55%;}
+
+  footer .links-list {
+    list-style-type: none;
+    text-align: right;
+    margin: 0;
+    padding-left: 2rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  div.decor .content {display: flex; flex-wrap: wrap; justify-content: space-between;}
+    div.decor p {flex-basis: 45%;}
+    div.decor .read-more {flex-basis: 100%;}
+}
+
+
+@media screen and (min-width: 900px) {
+  #container {padding: 0 3%;}
+
+  nav.main-nav li {font-size: 1.8em;}
+
+  #home header {
+    height: 35vmax;
+    max-height: 496px;
+    background: url(../img/header.svg) top no-repeat;
+    background-size: 100%;
+    padding: 0;
+    margin-top: 2rem;
+  }
+  #home header::after {
+    display: block;
+    position: absolute;
+    width: 150px;
+    height: 302px;
+    top: -15px;
+    left: 35%;
+    content: url(../img/vase.svg);
+  }
+  #home h1 {
+    position: absolute;
+    width: 40%;
+    max-width: 540px;
+    bottom: -15px;
+    left: -15px;
+    z-index: 100;
+}
+
+  .star {z-index: 1000;}
+
+  @keyframes inscription {
+  	0% {right: -50em;}
+  	100% {right: 218px;}
+  }
+
+  #home #inscription {
+    left: auto;
+    right: 218px;
+    top: 70%;
+    transform: perspective(400px) rotateX(-125deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+		animation-fill-mode: backwards;
+		animation: inscription 1s;
+    z-index: 1;
+  }
+
+    #home #inscription a {
+      text-align: center;
+      transform: perspective(400px) rotateX(170deg);
+    }
+    #home #inscription a:hover {transform: none;}
+
+  #home #hifi {
+    position: relative;
+    width: 210px;
+    height: 200px;
+    top: -50px;
+    left: 56%;
+    background: url(../img/hifi.svg) no-repeat;
+    padding: 0;
+  }
+
+    #home #hifi p {
+      position: relative;
+      top: 43%;
+      left: 38%;
+      width: 7em;
+      font-size: 13px;
+      line-height: 1;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    #home #hifi a {
+      display: block;
+      font-size: 140%;
+      color: var(--body-text);
+      text-transform: none;
+      padding-bottom: 0.3em;
+    }
+
+    #home #hifi::before, #home #hifi::after {
+      display: block;
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      top: 115px;
+      left: 8px;
+      content: "";
+      background: rgba(255,255,255,0);
+      border: 1px solid #fff;
+      border-radius: 15px;
+      transform: scaleX(.5);
+      opacity: 0;
+    }
+    #home #hifi::before {animation: 2s 5 normal hifi;}
+    #home #hifi::after {animation: 1s 5 normal hifi;}
+
+    @keyframes hifi {
+      0% {opacity: 0; transform: scaleX(.5);}
+      70% {opacity: 1;}
+      100% {opacity: 0; transform: scaleY(2.5) translate(-50px);}
+    }
+
+  #agenda {
+    position: absolute;
+    width: 157px;
+    height: 270px;
+    bottom: 40px;
+    left: auto;
+    right: -5px;
+    background: url(../img/tablet.svg) center no-repeat;
+    padding: 0;
+    transform: rotate(5deg);
+    animation: .5s ease-in .5s 5 normal agenda;
+    z-index: 10;
+  }
+    #agenda p {font-size: 15px; margin-left: -20px;}
+    #agenda time {
+      display: block;
+      width: 2em;
+      line-height: .8;
+      font-size: 36px;
+      padding-top: 80px;
+      margin: 0 auto 49px;
+      text-shadow: 2px 3px 1px #000;
+    }
+    #agenda::after {
+      position: absolute;
+      display: block;
+      width: 30px;
+      height: 30px;
+      bottom: -15px;
+      left: 50%;
+      content: "";
+      background: rgba(0,0,0,.1);
+      margin-left: -25px;
+      border-radius: 30px;
+      transform: rotate(-3deg) scaleY(.3);
+    }
+
+  nav.main-nav ul {padding: 0 5%;}
+  div.highlights {display: flex; justify-content: space-between;}
+    div.highlights h2 {font-size: 2.1em; line-height: 1.2;}
+    div.highlights h2::after {width: 80px; left: -50px; border-width: 8px;}
+
+    div.highlights > p {
+      flex-basis: 45%;
+      line-height: 1.45;
+      margin: 0;
+    }
+  div.stats {flex-basis: 35%;}
+
+	div.stats ul {margin-left: 1rem;}
+	div.stats li {font-size: 1.8em;}
+
+  div.sponsors {display: flex; align-items: center;}
+  div.sponsors h4 {flex-basis: 10%;}
+  div.sponsors ul {flex-basis: 80%; margin-left: 10%;}
+}
+
+@media screen and (min-width: 1000px) {
+    #agenda {width: 257px; height: 370px;}
+      #agenda p {font-size: 20px; margin-left: -27px;}
+      #agenda time {font-size: 48px; padding-top: 122px}
+
+    aside .content:first-of-type {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    aside h2 + p {flex-basis: 70%;}
+    aside .read-more {flex-basis: 100%;}
+
+}
+
+@media screen and (min-width: 1100px) {
+    #home #hifi {
+      top: -20px;
+      left: 60%;
+      transform: scale(1.25);
+    }
+
+    .two {top: 10%; left: 80%;}
+    .one {top: 50%; left: 76%;}
+}
+
+@media screen and (min-width: 1500px) {
+  #home #hifi {transform: scale(1.45);}
+  #home header::after {
+    left: 38%;
+    top: 53px;
+    transform: scale(1.2);
+  }
+  aside h2 {font-size: 2.5em;}
+  aside h3 {font-size: 2em;}
+  aside h4 {font-size: 1.5em;}
+}

@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="keywords" content="" />
+	<link href="img/favicon.png" type="image/png" rel="icon" />
+	<title>DEVFEST LILLE 2019</title>
+
+	<link href="css/main.css" rel="stylesheet" media="all" />
+	<link href="css/queries.css" rel="stylesheet" media="all" />
+	<script src="js/load.js"></script>
+
+	<!-- FIREBASE -->
+	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+	<script>
+      var config = {
+        apiKey: "AIzaSyBkHBRm3kOLVpkHz8eo1i2QpjIFedZsoXM",
+        authDomain: "devfest-2019-42374.firebaseapp.com",
+        databaseURL: "https://devfest-2019-42374.firebaseio.com",
+        projectId: "devfest-2019-42374",
+        storageBucket: "devfest-2019-42374.appspot.com",
+        messagingSenderId: "767098121464"
+      };
+      firebase.initializeApp(config);
+	</script>
+
+	<!-- GOOGLE ANALYTICS -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
+	<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-124200391-2');
+	</script>
+</head>
+
+<body id="home">
+
+	<div id="container">
+
+		<!-- PAGE HEADER -->
+		<header>
+			<h1>
+				<picture>
+					<source srcset="img/title.svg" media="(min-width: 900px)" />
+					<img src="img/header_sml.svg" alt="Devfest Lille 2019" />
+				</picture>
+			</h1>
+			<div id="hifi">
+				<p><a href="cfp.html" lang="en">Call for Paper</a> du 10 mars au 20 mai</p>
+			</div>
+			<div id="agenda">
+				<p><time datetime="2019-06-21">21 juin</time> IMT Lille-Douai</p>
+			</div>
+			<p id="inscription"><a href="register.html">Inscription</a></p>
+			<svg class="star one" aria-hidden="true" width="20" height="21">
+				<use xlink:href="#star20" style="fill: #F7B808; stroke: #F7B808" />
+			</svg>
+			<svg class="star two" aria-hidden="true" width="25" height="26">
+				<use xlink:href="#star20" style="fill: #43AAAF; stroke: #43AAAF" />
+			</svg>
+			<svg class="star three" aria-hidden="true" width="15" height="16">
+				<use xlink:href="#star20" style="fill: #C1C25D; stroke: #C1C25D" />
+			</svg>
+		</header>
+
+		<nav class="main-nav">
+			<h2 class="k-skip"><a href="#wrapper">Navigation (Sauter)</a></h2>
+			<ul>
+				<li><a href="index.html" aria-current="page">Accueil</a></li>
+				<li><a href="speakers.html" lang="en">Speakers</a></li>
+				<li><a href="agenda.html">Agenda</a></li>
+			</ul>
+		</nav>
+
+		<div id="wrapper">
+			<main>
+				<div class="highlights">
+					<p>Rejoignez nous pour une journée de
+						<strong>conférences</strong>, de <strong>code labs</strong>, d'<strong>échanges</strong>
+						sur les sujets du Web, du Mobile, du Cloud,
+						des technologies Google et de leur utilisation
+						par les acteurs locaux.</p>
+					<div class="stats">
+						<h2>Ne ratez pas la saison 3!</h2>
+						<ul>
+							<li><strong>400</strong> acteurs</li>
+							<li><strong>5</strong> <span lang="en">tracks</span></li>
+							<li><strong>29</strong> épisodes</li>
+							<li><strong>40</strong> <span lang="en">stars</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="decor">
+					<h2>Le Décor : <strong>IMT Lille-Douai</strong></h2>
+					<div class="content">
+						<p><img src="img/venue.jpg" alt="L'anfithéatre de l'IMT" /></p>
+						<p>IMT Lille Douai représente la plus grande école
+							d’ingénieurs au nord de Paris, pour former l’ingénieur du futur,
+							généraliste et expert du numérique.</p>
+						<p class="read-more"><a href="#">Comment y aller</a></p>
+					</div>
+					<img id="ship" src="img/ship.svg" alt="" />
+				</div>
+			</main>
+
+			<aside>
+				<div class="content">
+					<h2>Devenez sponsor</h2>
+					<p>Profitez du Devfest Lille Saison 3 pour gagner en visibilité et échanger avec la
+						communauté des développeurs de la région Haut de France.</p>
+					<p class="read-more"><a href="#">Dossier de sponsoring</a></p>
+				</div>
+				<div class="content">
+					<h3>Un grand merci à nos sponsors!</h3>
+					<div class="sponsors">
+						<h4 lang="en">Sponsors Gold</h3>
+						<ul>
+							<li><a href="#"><img src="img/sponsors/adeo.jpg" alt="Adeo" /></a></li>
+						</ul>
+					</div>
+					<div class="sponsors">
+						<h4 lang="en">Sponsors Silver</h3>
+						<ul>
+							<li><a href="#"><img src="img/sponsors/axa.jpg" alt="Axa" /></a></li>
+						</ul>
+					</div>
+					<div class="sponsors">
+						<h4>Sponsors Bronze</h3>
+						<ul>
+							<li><a href="#"><img src="img/sponsors/techlab.png" alt="Techlab" /></a></li>
+							<li><a href="#"><img src="img/sponsors/ovh.png" alt="OVH" /></a></li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</div>
+
+		<hr />
+
+		<footer>
+			<div class="content">
+				<dl class="h-event">
+					<dt class="p-name">Devfest Lille 2019</dt>
+					<dd class="p-summary">Une journée de
+						conférences, de code labs et d'échanges	sur les sujets du web, du mobile, du cloud et
+						des technologies Google.</dd>
+					<dd><time class="dt-start" datetime="2019-06-21">21 juin 2019</time></dd>
+					<dd><a href="#" class="p-location">IMT Lille-Douai</a></dd>
+				</dl>
+				<ul class="links-list">
+					<li><a href="speakers.html" lang="en">Speakers</a></li>
+					<li><a href="agenda.html">Agenda</a></li>
+					<li><a href="contact.html">Contactez-nous</a></li>
+					<li><a href="faq.html">FAQ</a></li>
+					<li><a href="#">Saison 2/ 2018</a></li>
+					<li><a href="#">Saison 1/ 2017</a></li>
+				</ul>
+			</div>
+			<ul class="sm-list">
+				<li class="show-icons"><a href="https://twitter.com/gdglille/"><img src="img/twitter.svg" alt="Twitter" /></a></li>
+				<li class="show-icons"><a href="https://www.facebook.com/GoogleDeveloperGroupLille/"><img src="img/linkedin.svg" alt="LinkedIn" /></a></li>
+				<li class="show-icons"><a href="https://www.linkedin.com/company/gdg-lille/"><img src="img/fb.svg" alt="Facebook" /></a></li>
+			</ul>
+	    <p class="copyright">GDG Lille, 2019</p>
+    </footer>
+
+	</div> <!-- /container -->
+	<svg class="svgLibrary">
+		<defs>
+			<svg id="star20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" preserveAspectRatio="xMinYMin meet">
+				<line x1="10.53" y1="3.04" x2="18.29" y2="29.01" />
+			  <line x1="20.95" y1="1.88" x2="8.22" y2="29.67" />
+			  <line x1="1.69" y1="7.81" x2="26.92" y2="24.39" />
+			  <line x1="28.25" y1="11.03" x2="1.92" y2="20.44" />
+			  <ellipse cx="10.47" cy="2.85" rx="2" ry="2" />
+			  <ellipse cx="20.86" cy="2" rx="2" ry="2" />
+			  <ellipse cx="28.32" cy="11.06" rx="2" ry="2" />
+			  <ellipse cx="26.87" cy="24.46" rx="2" ry="2" />
+			  <ellipse cx="18.15" cy="29.2" rx="2" ry="2" />
+			  <ellipse cx="8.15" cy="29.64" rx="2" ry="2" />
+			  <ellipse cx="1.87" cy="20.5" rx="2" ry="2" />
+			  <ellipse cx="2" cy="7.56" rx="2" ry="2" />
+			</svg>
+		</defs>
+	</svg>
+</body>
+</html>
