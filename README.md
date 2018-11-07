@@ -1,26 +1,19 @@
-# devfest-2019
+# DevFest 2019 // GDG Lille ([@GDGLille](https://twitter.com/GDGLille)) 
 
-## Project setup
-```
-npm install
-```
+[![CircleCI](https://circleci.com/gh/GDG-Lille/devfest-2019/tree/master.svg?style=svg)](https://circleci.com/gh/GDG-Lille/devfest-2019/tree/master)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Made with ...
+* [NPM](https://www.npmjs.com/) 
+* [Firebase](https://firebase.google.com)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## How to build for production ?
 
-### Run your tests
-```
-npm run test
-```
+Nothing to do, [Circle CI](https://circleci.com/gh/GDG-Lille) does it :) (@see .circleci/config.yml)
 
-### Lints and fixes files
-```
-npm run lint
-```
+## How to run in local ?
+
+Run `npm install -g firebase-tools` to install Firebase SDK
+Run `firebase serve` to deploy a dev server.
+
+## Contact via [Issues](https://github.com/GDG-Lille/devfest-2019/issues)
+Helpful for **question**, **bug** and **contribution request**.
