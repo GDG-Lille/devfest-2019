@@ -14,12 +14,33 @@
     margin: 0;
     padding-left: 2rem;
   }
+  #container > header > p {
+    left: 50%;
+    margin: 0 0 0 -300px;
+  }
 }
+
 
 @media screen and (min-width: 700px) {
   div.decor .content {display: flex; flex-wrap: wrap; justify-content: space-between;}
     div.decor p {flex-basis: 45%;}
     div.decor .read-more {flex-basis: 100%;}
+}
+
+@media screen and (min-width: 800px) {
+  div.all-speakers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: -1rem;
+  }
+  div.speaker-sheet {
+    flex: 1;
+    min-width: 33%;
+    margin: 0 0 1rem 1rem;
+    box-shadow: 5px 5px 2px rgba(0,0,0,.2);
+  }
+
 }
 
 
@@ -187,6 +208,7 @@
 }
 
 @media screen and (min-width: 1000px) {
+
     #agenda {width: 257px; height: 370px;}
       #agenda p {font-size: 20px; margin-left: -27px;}
       #agenda time {font-size: 48px; padding-top: 122px}
@@ -199,6 +221,8 @@
     aside h2 + p {flex-basis: 70%;}
     aside .read-more {flex-basis: 100%;}
 
+    div.speaker-sheet {min-width: 25%;}
+
 }
 
 @media screen and (min-width: 1100px) {
@@ -210,6 +234,8 @@
 
     .two {top: 10%; left: 80%;}
     .one {top: 50%; left: 76%;}
+
+    div.speaker-sheet {margin: 0 0 2rem 2rem;}
 }
 
 @media screen and (min-width: 1500px) {
