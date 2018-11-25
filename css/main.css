@@ -61,7 +61,7 @@ header, footer, main, nav, aside, article, section, figure, figcaption {
 body {
   font: 100%/1.3 var(--stack);
   color: #000;
-	background-color: var(--body-bg);
+	background-color: var(--main-color);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
@@ -73,7 +73,7 @@ h1 {
 	text-align: center;
 	padding: 1rem 5% 0;
 	margin: 0 auto;
-	z-index: 100;
+	z-index: 1100;
 }
 	#home h1 {
 		position: static;
@@ -105,6 +105,8 @@ h2 {
 		background: url(../img/border.svg) repeat-x;
 		transform: rotate(-5deg);
 	}
+
+h3 {font-size: calc(1em + 0.9vmax); margin-bottom: 0.8em;}
 
 p, li, dt, dd {font-size: 1.1em;}
 
@@ -178,6 +180,17 @@ hr {display: none;}
 	100% {opacity: 1; transform: rotate(0deg);}
 }
 
+@keyframes hifi {
+  0% {opacity: 0; transform: scaleX(.5);}
+  70% {opacity: 1;}
+  100% {opacity: 0; transform: scaleY(2.5) translate(-50px);}
+}
+
+@keyframes inscription {
+	0% {right: -50em;}
+	100% {right: 218px;}
+}
+
 .star {
 	position: absolute;
 }
@@ -231,7 +244,7 @@ footer {
 				margin-bottom: 0.5em;
 			}
 
-			footer .links-list li:nth-child(4) {
+			footer .links-list li:nth-child(5) {
 				padding-bottom: 1em;
 				margin-bottom: 1em;
 				border-bottom: 1px solid #FFF;
@@ -323,6 +336,24 @@ nav.main-nav {position: relative; margin-top: -1.3rem;}
 	}
 	nav.main-nav a[aria-current] {color: var(--main-color-sd);}
 
+
+/* -------------------------------------------------------------------- */
+/* -------------------------- EDITORIAL ------------------------------- */
+
+article p {max-width: 45em; line-height: 1.58;}
+article p + p {margin-top: 0.8em;}
+
+article.faq + article.faq {
+	padding-top: 1rem;
+	margin-top: 1rem;
+	border-top: 3px dotted var(--main-color);
+}
+
+article a {
+	text-decoration: underline;
+	color: #000;
+	background-color: rgba(255,255,255,0);
+}
 
 /* -------------------------------------------------------------------- */
 /* -------------------------- UTILITIES ------------------------------- */
