@@ -12,19 +12,8 @@
 	<link href="css/queries.css" rel="stylesheet" media="all" />
 	<script src="js/load.js"></script>
 
-	<!-- FIREBASE -->
-	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
-	<script>
-      var config = {
-        apiKey: "AIzaSyBkHBRm3kOLVpkHz8eo1i2QpjIFedZsoXM",
-        authDomain: "devfest-2019-42374.firebaseapp.com",
-        databaseURL: "https://devfest-2019-42374.firebaseio.com",
-        projectId: "devfest-2019-42374",
-        storageBucket: "devfest-2019-42374.appspot.com",
-        messagingSenderId: "767098121464"
-      };
-      firebase.initializeApp(config);
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<!-- GOOGLE ANALYTICS -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
@@ -32,7 +21,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-124200391-2');
 	</script>
 	<link rel="manifest" href="manifest.json">
@@ -119,19 +107,19 @@
 					<div class="sponsors">
 						<h4 lang="en">Sponsors Gold</h3>
 						<ul>
-							
+
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4 lang="en">Sponsors Silver</h3>
 						<ul>
-							
+
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4>Sponsors Bronze</h3>
 						<ul>
-							
+
 						</ul>
 					</div>
 				</div>
@@ -200,6 +188,26 @@
 				});
 			});
 		}
+	</script>
+	<script>
+      const app = new Vue({
+        el: '#home',
+		data() {
+          return {
+            partners: []
+		  };
+		},
+        created() {
+          this.getPartners();
+		},
+		methods: {
+          getPartners() {
+            axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners')
+			  .then(res => console.log(res))
+			  .catch(err => console.error(err))
+		  }
+		}
+      })
 	</script>
 </body>
 </html>
