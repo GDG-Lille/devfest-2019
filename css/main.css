@@ -89,6 +89,7 @@ h2 {
 	position: relative;
 	display: inline-block;
 	font-size: calc(1.2em + 1vmax);
+	color: var(--body-text);
 	background-color: var(--hot-color);
 	padding: 0.3em 0.5em;
 	margin-bottom: 2rem;
@@ -103,6 +104,7 @@ h2 {
 		top: 10px;
 		left: -40px;
 		content: "";
+		color: var(--body-text);
 		background: url(../img/border.svg) repeat-x;
 		transform: rotate(-5deg);
 	}
