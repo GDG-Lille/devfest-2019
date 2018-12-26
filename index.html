@@ -107,19 +107,37 @@
 					<div class="sponsors">
 						<h4 lang="en">Sponsors Gold</h3>
 						<ul>
-
+                            <li v-for="(partner, idx) in partners.gold"
+                                :key="`partner_gold_${idx}`">
+                                <a :href="`https://${partner.url}`">
+                                    <img :src="partner.logoUrl"
+                                         :alt="partner.name" />
+                                </a>
+                            </li>
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4 lang="en">Sponsors Silver</h3>
 						<ul>
-
+                            <li v-for="(partner, idx) in partners.silver"
+                                :key="`partner_silver_${idx}`">
+                                <a :href="`https://${partner.url}`">
+                                    <img :src="partner.logoUrl"
+                                         :alt="partner.name" />
+                                </a>
+                            </li>
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4>Sponsors Bronze</h3>
 						<ul>
-
+                            <li v-for="(partner, idx) in partners.bronze"
+                                :key="`partner_bronze_${idx}`">
+                                <a :href="`https://${partner.url}`">
+                                    <img :src="partner.logoUrl"
+                                         :alt="partner.name" />
+                                </a>
+                            </li>
 						</ul>
 					</div>
 				</div>
@@ -191,10 +209,14 @@
 	</script>
 	<script>
       const app = new Vue({
-        el: '#home',
+        el: '#wrapper',
 		data() {
           return {
-            partners: []
+            partners: {
+              gold: [],
+              silver: [],
+              bronze: [],
+            }
 		  };
 		},
         created() {
@@ -203,7 +225,12 @@
 		methods: {
           getPartners() {
             axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners?editionId=VBsJyBiyXwaM1GsDzxP7')
-			  .then(res => console.log(res))
+              .then(res => res.data)
+			  .then(partners => {
+			    this.partners.gold = partners.filter(partner => partner.level === 'GOLD');
+                this.partners.silver = partners.filter(partner => partner.level === 'SILVER');
+                this.partners.bronze = partners.filter(partner => partner.level === 'BRONZE');
+              })
 			  .catch(err => console.error(err))
 		  }
 		}
