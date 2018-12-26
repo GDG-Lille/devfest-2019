@@ -1,7 +1,7 @@
 {
   "manifest_version": "2",
   "name": "Devfest Lille 2019",
-  "short_name": "devfest-lille",
+  "short_name": "devfestlille",
   "version": "1",
   "default_locale": "fr",
   "description": "La conférence GDG Lille",
@@ -23,7 +23,7 @@
         "type": "image/png"
       }],
   "author": "Angela P. Ricci",
-  "display": "browser",
+  "display": "minimal-ui",
   "start_url": "/index.html",
   "background_color": "#43AAAF",
   "theme_color": "#F37D11"
