@@ -13,19 +13,8 @@
 	<link href="css/queries.css" rel="stylesheet" media="all" />
 	<script src="js/load.js"></script>
 
-	<!-- FIREBASE -->
-	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
-	<script>
-      var config = {
-        apiKey: "AIzaSyBkHBRm3kOLVpkHz8eo1i2QpjIFedZsoXM",
-        authDomain: "devfest-2019-42374.firebaseapp.com",
-        databaseURL: "https://devfest-2019-42374.firebaseio.com",
-        projectId: "devfest-2019-42374",
-        storageBucket: "devfest-2019-42374.appspot.com",
-        messagingSenderId: "767098121464"
-      };
-      firebase.initializeApp(config);
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<!-- GOOGLE ANALYTICS -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
@@ -33,7 +22,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-124200391-2');
 	</script>
 	<link rel="manifest" href="manifest.json" />
@@ -113,27 +101,45 @@
 						communauté des développeurs de la région Haut de France.</p>
 					<p class="read-more"><a target="_blank" href="https://drive.google.com/file/d/1SHnp1vUa1Yd3RslpNr56wX2wOJZVkEIs/view">Dossier de partenariat</a> [PDF, 5Mo]</p>
 				</div>
-				<!--div class="content">
+				<div class="content">
 					<h3>Un grand merci à nos partenaires!</h3>
 					<div class="sponsors">
 						<h4>Partenaires Gold</h3>
 						<ul>
-
+						  <li v-for="(partner, idx) in partners.gold"
+							  :key="`partner_gold_${idx}`">
+							  <a :href="`https://${partner.url}`">
+								  <img :src="partner.logoUrl"
+									   :alt="partner.name" />
+							  </a>
+						  </li>
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4>Partenaires Silver</h3>
 						<ul>
-
+						  <li v-for="(partner, idx) in partners.silver"
+							  :key="`partner_silver_${idx}`">
+							  <a :href="`https://${partner.url}`">
+								<img :src="partner.logoUrl"
+									 :alt="partner.name" />
+							  </a>
+						  </li>
 						</ul>
 					</div>
 					<div class="sponsors">
 						<h4>Partenaires Bronze</h3>
 						<ul>
-
+						  <li v-for="(partner, idx) in partners.bronze"
+							  :key="`partner_bronze_${idx}`">
+							  <a :href="`https://${partner.url}`">
+								  <img :src="partner.logoUrl"
+									   :alt="partner.name" />
+							  </a>
+						  </li>
 						</ul>
 					</div>
-				</div-->
+        		</div>
 			</aside>
 		</div>
 
@@ -199,6 +205,35 @@
 				});
 			});
 		}
+	</script>
+	<script>
+      const app = new Vue({
+        el: '#wrapper',
+		data() {
+          return {
+            partners: {
+              gold: [],
+              silver: [],
+              bronze: [],
+            }
+		  };
+		},
+        created() {
+          this.getPartners();
+		},
+		methods: {
+          getPartners() {
+            axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners?editionId=VBsJyBiyXwaM1GsDzxP7')
+              .then(res => res.data)
+              .then(partners => {
+                this.partners.gold = partners.filter(partner => partner.level === 'GOLD');
+                this.partners.silver = partners.filter(partner => partner.level === 'SILVER');
+                this.partners.bronze = partners.filter(partner => partner.level === 'BRONZE');
+              })
+              .catch(err => console.error(err))
+		  }
+		}
+      })
 	</script>
 </body>
 </html>
