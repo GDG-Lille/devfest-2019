@@ -18,6 +18,10 @@ const filesToCache = [
   '/img/tablet.svg'
 ];
 
+const excludedUrlsOfCache = [
+  'https://us-central1-cms-devfest.cloudfunctions.net'
+];
+
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
@@ -39,9 +43,14 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
-    })
-  );
+  e.respondWith(async function() {
+    const excludedUrl = excludedUrlsOfCache.find(url => url.indexOf(e.request.url) !== -1);
+    const cachedUrl = await caches.match(e.request);
+
+    if(excludedUrl || !cachedUrl) {
+      return fetch(e.request);
+    }
+
+    return cachedUrl;
+  });
 });
