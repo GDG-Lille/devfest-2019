@@ -1,4 +1,4 @@
-const cacheName = 'devfestlille-4';
+const cacheName = 'devfestlille-5';
 
 const filesToCache = [
   '/',
@@ -16,6 +16,10 @@ const filesToCache = [
   '/img/vase.svg',
   '/img/hifi.svg',
   '/img/tablet.svg'
+];
+
+const excludedUrlsOfCache = [
+  'https://us-central1-cms-devfest.cloudfunctions.net'
 ];
 
 self.addEventListener('install', function(e) {
@@ -39,9 +43,14 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
-    })
-  );
+  e.respondWith(async function() {
+    const excludedUrl = excludedUrlsOfCache.find(url => url.indexOf(e.request.url) !== -1);
+    const cachedUrl = await caches.match(e.request);
+
+    if(excludedUrl || !cachedUrl) {
+      return fetch(e.request);
+    }
+
+    return cachedUrl;
+  });
 });
