@@ -44,7 +44,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   e.respondWith(async function() {
-    const excludedUrl = excludedUrlsOfCache.find(url => url.indexOf(e.request.url) !== -1);
+    const excludedUrl = excludedUrlsOfCache.find(url => e.request.url.indexOf(url) !== -1);
     const cachedUrl = await caches.match(e.request);
 
     if(excludedUrl || !cachedUrl) {
@@ -52,5 +52,5 @@ self.addEventListener('fetch', function(e) {
     }
 
     return cachedUrl;
-  });
+  }());
 });
