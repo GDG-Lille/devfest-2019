@@ -11,6 +11,18 @@
 	<link href="css/main.css" rel="stylesheet" media="all" />
 	<link href="css/queries.css" rel="stylesheet" media="all" />
 	<!--script src="js/k-load.js"></script-->
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<!-- GOOGLE ANALYTICS -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-124200391-2');
+	</script>
 </head>
 
 <body>
@@ -47,105 +59,22 @@
 
 				<div class="all-speakers">
 					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet web">
+					<div class="speaker-sheet"
+						v-for="(speaker, idx) in speakers"
+						:key="`speaker_${idx}`">
 						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
+							<p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
+							<h3>{{ speaker.displayName }}</h3>
+							<p class="s-job">{{ speaker.company }}</p>
 						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
-					</div>
-					<!-- /SPEAKER SHEET -->
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet cloud">
-						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
-						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
-					</div>
-					<!-- /SPEAKER SHEET -->
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet mobile">
-						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
-						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
-					</div>
-					<!-- /SPEAKER SHEET -->
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet web">
-						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
-						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
-					</div>
-					<!-- /SPEAKER SHEET -->
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet cloud">
-						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
-						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
-					</div>
-					<!-- /SPEAKER SHEET -->
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet mobile">
-						<header>
-							<p class="s-photo"><img src="img/speakers/aricci.jpg" alt="" /></p>
-							<h3>Angela P. Ricci</h3>
-							<p class="s-job">Worldline</p>
-						</header>
-						<div class="content">
-							<p>Avec une expérience de dimension internationale, Angela dispose de
-								plus de 23 années entièrement dédiées aux technologies web et au web design.</p>
-							<p>Passionnée des technologies et des projets web, elle participe à plusieurs
-								conférences, et écris à propos d'accessibilité, des standards du web
-								et du web design sur son site personnel.</p>
-						</div>
-						<p class="read-more"><a href="#">@gericci</a></p>
+						<div class="content">{{ speaker.bio }}</div>
+						<p class="read-more">
+							<a :href="`https://twitter.com/${speaker.twitter}`"
+							   v-if="speaker.twitter">{{ speaker.twitter }}</a>
+							&nbsp;
+							<a :href="`https://github.com/${speaker.github}`"
+								v-if="speaker.github">{{ speaker.github }}</a>
+						</p>
 					</div>
 					<!-- /SPEAKER SHEET -->
 				</div>
@@ -183,6 +112,28 @@
     </footer>
 
 	</div> <!-- /container -->
+
+	<script>
+	const app = new Vue({
+		el: '#wrapper',
+		data() {
+			return {
+				speakers: []
+			};
+		},
+		created() {
+			this.getSpeakers();
+		},
+		methods: {
+			getSpeakers() {
+				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7')
+						.then(res => res.data)
+						.then(speakers => this.speakers = Object.values(speakers))
+						.catch(err => console.error(err));
+			}
+		}
+	})
+	</script>
 
 </body>
 </html>
