@@ -194,6 +194,10 @@ hr {display: none;}
 	100% {right: 218px;}
 }
 
+@keyframes circling {
+	100% {transform: rotate(360deg)}
+}
+
 .star {
 	position: absolute;
 }
@@ -681,4 +685,17 @@ div.sponsors li::before {
 		background-color: var(--body-bg);
 		transform: rotate(-6deg);
 		z-index: 1;
+}
+
+div.loader {
+	height: 250px;
+	width: 175px;
+	margin: auto;
+
+	background: url('../img/ship.svg') top center no-repeat;
+
+	animation-duration: 3s;
+	animation-name: circling;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }

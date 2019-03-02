@@ -101,7 +101,13 @@
 						communauté des développeurs de la région Haut de France.</p>
 					<p class="read-more"><a target="_blank" href="https://drive.google.com/file/d/1SHnp1vUa1Yd3RslpNr56wX2wOJZVkEIs/view">Dossier de partenariat</a> [PDF, 5Mo]</p>
 				</div>
-				<div class="content">
+
+				<div class="loader"
+					 v-if="isLoading">
+				</div>
+
+				<div class="content"
+					 v-else>
 					<h3>Un grand merci à nos partenaires!</h3>
 					<div class="sponsors">
 						<h4>Partenaires Gold</h3>
@@ -211,6 +217,7 @@
         el: '#wrapper',
 		data() {
           return {
+          	isLoading: false,
             partners: {
               gold: [],
               silver: [],
@@ -223,6 +230,8 @@
 		},
 		methods: {
           getPartners() {
+          	this.isLoading = true;
+
             axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners?editionId=VBsJyBiyXwaM1GsDzxP7')
               .then(res => res.data)
               .then(partners => {
@@ -231,6 +240,7 @@
                 this.partners.bronze = Object.values(partners).filter(partner => partner.level === 'BRONZE');
               })
               .catch(err => console.error(err))
+			  .finally(() => this.isLoading = false);
 		  }
 		}
       })
