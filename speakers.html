@@ -56,7 +56,12 @@
 
 				<h2>Speakers</h2>
 
-				<div class="all-speakers">
+				<div class="loader"
+					 v-if="isLoading">
+				</div>
+
+				<div class="all-speakers"
+					v-else>
 					<!-- SPEAKER SHEET/ -->
 					<div class="speaker-sheet"
 						v-for="(speaker, idx) in speakers"
@@ -117,6 +122,7 @@
 		el: '#wrapper',
 		data() {
 			return {
+				isLoading: false,
 				speakers: []
 			};
 		},
@@ -125,10 +131,13 @@
 		},
 		methods: {
 			getSpeakers() {
+				this.isLoading = true;
+
 				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7')
 						.then(res => res.data)
 						.then(speakers => this.speakers = Object.values(speakers))
-						.catch(err => console.error(err));
+						.catch(err => console.error(err))
+						.finally(() => this.isLoading = false);
 			}
 		}
 	})
