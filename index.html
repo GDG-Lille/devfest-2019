@@ -211,37 +211,37 @@
 		}
 	</script>
 	<script>
-      const app = new Vue({
-        el: '#wrapper',
-		data() {
-          return {
-          	isLoading: false,
-            partners: {
-              gold: [],
-              silver: [],
-              bronze: [],
-            }
-		  };
-		},
-        created() {
-          this.getPartners();
-		},
-		methods: {
-          getPartners() {
-          	this.isLoading = true;
+		const app = new Vue({
+			el: '#wrapper',
+			data: () => {
+				return {
+					isLoading: false,
+					partners: {
+						gold: [],
+						silver: [],
+						bronze: [],
+					}
+				};
+			},
+			created() {
+				this.getPartners();
+			},
+			methods: {
+				getPartners() {
+					this.isLoading = true;
 
-            axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners?editionId=VBsJyBiyXwaM1GsDzxP7')
-              .then(res => res.data)
-              .then(partners => {
-                this.partners.gold = Object.values(partners).filter(partner => partner.level === 'GOLD');
-                this.partners.silver = Object.values(partners).filter(partner => partner.level === 'SILVER');
-                this.partners.bronze = Object.values(partners).filter(partner => partner.level === 'BRONZE');
-              })
-              .catch(err => console.error(err))
-			  .finally(() => this.isLoading = false);
-		  }
-		}
-      })
+					axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActivePartners?editionId=VBsJyBiyXwaM1GsDzxP7')
+						.then(res => res.data)
+						.then(partners => {
+							this.partners.gold = Object.values(partners).filter(partner => partner.level === 'GOLD');
+							this.partners.silver = Object.values(partners).filter(partner => partner.level === 'SILVER');
+							this.partners.bronze = Object.values(partners).filter(partner => partner.level === 'BRONZE');
+						})
+						.catch(err => console.error(err))
+						.finally(() => this.isLoading = false);
+				}
+			}
+		})
 	</script>
 </body>
 </html>

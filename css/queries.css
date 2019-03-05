@@ -14,7 +14,7 @@
     margin: 0;
     padding-left: 2rem;
   }
-  #container > header > p {
+  #container > header > p:not(#inscription) {
     left: 50%;
     margin: 0 0 0 -300px;
   }
