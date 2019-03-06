@@ -35,11 +35,18 @@
     margin-left: -1rem;
   }
   div.speaker-sheet {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     min-width: 33%;
     margin: 0 0 1rem 1rem;
     box-shadow: 5px 5px 2px rgba(0,0,0,.2);
   }
+
+    div.speaker-sheet .content {margin: 1rem 0;}
+    div.speaker-sheet ul.social {margin-top: auto;}
+
+    div.speaker-sheet p.character {align-self: end;}
 
 }
 
@@ -210,7 +217,7 @@
     aside h2 + p {flex-basis: 70%;}
     aside .read-more {flex-basis: 100%;}
 
-    div.speaker-sheet {min-width: 25%;}
+    div.speaker-sheet {min-width: 300px;}
 
     article.faq {display: flex;}
       article.faq h3 {flex-basis: 30%;}

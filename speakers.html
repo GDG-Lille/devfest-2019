@@ -54,7 +54,7 @@
 		<div id="wrapper">
 			<main>
 
-				<h2>Acteurs</h2>
+				<h2>Les Acteurs</h2>
 
 				<div class="loader"
 					 v-if="isLoading">
@@ -70,15 +70,17 @@
 							<p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
 							<h3>{{ speaker.displayName }}</h3>
 							<p class="s-job">{{ speaker.company }}</p>
+							<p class="character">Dans le rôle de <strong>{{ speaker.role }}</strong></p>
 						</header>
 						<div class="content">{{ speaker.bio }}</div>
-						<p class="read-more">
-							<a :href="`https://twitter.com/${speaker.twitter}`"
-							   v-if="speaker.twitter">{{ speaker.twitter }}</a>
-							&nbsp;
-							<a :href="`https://github.com/${speaker.github}`"
-								v-if="speaker.github">{{ speaker.github }}</a>
-						</p>
+						<ul class="social">
+							<li><img src="img/twitter2.svg" alt="Twitter">
+								<a :href="`https://twitter.com/${speaker.twitter}`"
+							   v-if="speaker.twitter">{{ speaker.twitter }}</a></li>
+							<li><img src="img/github-face.svg" alt="Github">
+								<a :href="`https://github.com/${speaker.github}`"
+								v-if="speaker.github">{{ speaker.github }}</a></li>
+						</ul>
 					</div>
 					<!-- /SPEAKER SHEET -->
 				</div>
@@ -109,8 +111,7 @@
 			</div>
 			<ul class="sm-list">
 				<li class="show-icons"><a href="https://twitter.com/gdglille/"><img src="img/twitter.svg" alt="Twitter" /></a></li>
-				<li class="show-icons"><a href="https://www.facebook.com/GoogleDeveloperGroupLille/"><img src="img/linkedin.svg" alt="LinkedIn" /></a></li>
-				<li class="show-icons"><a href="https://www.linkedin.com/company/gdg-lille/"><img src="img/fb.svg" alt="Facebook" /></a></li>
+				<li class="show-icons"><a href="https://www.linkedin.com/company/gdg-lille/"><img src="img/linkedin.svg" alt="LinkedIn" /></a></li>
 			</ul>
 	    <p class="copyright">GDG Lille, 2019</p>
     </footer>
@@ -118,6 +119,7 @@
 	</div> <!-- /container -->
 
 	<script>
+
 	const app = new Vue({
 		el: '#wrapper',
 		data() {
