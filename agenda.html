@@ -6,23 +6,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="keywords" content="" />
 	<link href="img/favicon.png" type="image/png" rel="icon" />
-	<title>ACTEURS : DEVFEST LILLE 2019</title>
+	<title>Agenda : DEVFEST LILLE 2019</title>
 
 	<link href="css/main.css" rel="stylesheet" media="all" />
 	<link href="css/queries.css" rel="stylesheet" media="all" />
-	<!--script src="js/k-load.js"></script-->
+	<!--script src="js/k-load.js"></script
 
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 
-	<!-- GOOGLE ANALYTICS -->
+	<!-- GOOGLE ANALYTICS
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', 'UA-124200391-2');
-	</script>
+	</script> -->
 </head>
 
 <body>
@@ -54,36 +54,9 @@
 		<div id="wrapper">
 			<main>
 
-				<h2>Les Acteurs</h2>
+				<h2>L'Agenda</h2>
 
-				<div class="loader"
-					 v-if="isLoading">
-				</div>
 
-				<div class="all-speakers"
-					v-else>
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet"
-						v-for="(speaker, idx) in speakers"
-						:key="`speaker_${idx}`">
-						<header>
-							<p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
-							<h3>{{ speaker.displayName }}</h3>
-							<p class="s-job">{{ speaker.company }}</p>
-							<!--p class="character">Dans le rôle de <strong>{{ speaker.role }}</strong></p-->
-						</header>
-						<div class="content">{{ speaker.bio }}</div>
-						<ul class="social">
-							<li><img src="img/twitter2.svg" alt="Twitter">
-								<a :href="`https://twitter.com/${speaker.twitter}`"
-							   v-if="speaker.twitter">{{ speaker.twitter }}</a></li>
-							<li><img src="img/github-face.svg" alt="Github">
-								<a :href="`https://github.com/${speaker.github}`"
-								v-if="speaker.github">{{ speaker.github }}</a></li>
-						</ul>
-					</div>
-					<!-- /SPEAKER SHEET -->
-				</div>
 
 			</main>
 		</div>
@@ -96,7 +69,7 @@
 					<dd class="p-summary">Une journée de
 						conférences, de code labs et d'échanges	sur les sujets du web, du mobile, du cloud et
 						des technologies Google.</dd>
-					<dd><time class="dt-start" datetime="2019-06-21">21 juin 2019</time></dd>
+					<dd><time class="dt-start" datetime="2019-06-14">14 juin 2019</time></dd>
 					<dd><a href="#" class="p-location">Kinépolis Lomme</a></dd>
 				</dl>
 				<ul class="links-list">
@@ -117,33 +90,6 @@
     </footer>
 
 	</div> <!-- /container -->
-
-	<script>
-
-	const app = new Vue({
-		el: '#wrapper',
-		data() {
-			return {
-				isLoading: false,
-				speakers: []
-			};
-		},
-		created() {
-			this.getSpeakers();
-		},
-		methods: {
-			getSpeakers() {
-				this.isLoading = true;
-
-				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7')
-						.then(res => res.data)
-						.then(speakers => this.speakers = Object.values(speakers))
-						.catch(err => console.error(err))
-						.finally(() => this.isLoading = false);
-			}
-		}
-	})
-	</script>
 
 </body>
 </html>
