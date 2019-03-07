@@ -46,7 +46,10 @@
     div.speaker-sheet .content {margin: 1rem 0;}
     div.speaker-sheet ul.social {margin-top: auto;}
 
-    div.speaker-sheet p.character {align-self: end;}
+    div.speaker-sheet p.character {
+	    min-height: 2em;
+	    align-self: end;
+	}
 
 }
 
