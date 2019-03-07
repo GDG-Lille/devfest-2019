@@ -1,0 +1,74 @@
+{
+    "7maAibmtkalfivtCyAsC": {
+        "name": "SFEIR",
+        "url": "www.sfeir.com",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FSFEIR.png?alt=media&token=5d328f41-ce74-4fa4-a237-33824fc409c2",
+        "level": "GOLD"
+    },
+    "malECORmDxsTkMS7or9p": {
+        "name": "decat",
+        "url": "recrutement.decathlon.fr/metier/informatique/",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2Fdecat.png?alt=media&token=37fc75bf-a2ca-44f5-b3f6-53bb807ed96f",
+        "level": "GOLD"
+    },
+    "y60GCPUP3J6iEowtqiwT": {
+        "name": "Proxiad",
+        "url": "www.proxiad.com/implantations/lille/",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FProxiad.png?alt=media&token=c26f4d8d-5aaa-4f0f-a94e-dfae1b9c5478",
+        "level": "SILVER"
+    },
+    "0X32uC5Ld3CzkT2tofM5": {
+        "name": "Unis",
+        "url": "www.unis.fr",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FUnis.png?alt=media&token=049dcaf1-d1db-424d-bc19-382b223255c1",
+        "level": "SILVER"
+    },
+    "AV4bQkP7NUN5nkLRHAvw": {
+        "name": "SII",
+        "url": "groupe-sii.com/fr",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FSII.svg?alt=media&token=42dddfcb-680d-4d18-ae9f-23b34967ae9a",
+        "level": "GOLD"
+    },
+    "X5YSTyPxOX0DUWRsw3Qa": {
+        "name": "Ineat",
+        "url": "ineat-group.com",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FIneat.png?alt=media&token=c7c17408-a48e-4ff7-bf60-ce7ada3f4b55",
+        "level": "SILVER"
+    },
+    "pUUWBVk7eS9pJrjL8EBA": {
+        "name": "no consulting",
+        "url": "www.noconsulting.fr",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2Fno%20consulting.png?alt=media&token=85219962-5bdf-419f-8090-ecef4f42b71a",
+        "level": "SILVER"
+    },
+    "zUiZ8LwTmnjdpneHiAcm": {
+        "name": "Zenika",
+        "url": "www.zenika.com/",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FZenika.png?alt=media&token=ba7c0af7-91b2-4ad4-a04a-f42fd1123fda",
+        "level": "SILVER"
+    },
+    "5VSZVbjg6uIyObcSZSd8": {
+        "name": "Programmez",
+        "url": "www.programmez.com/magazine.php",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FProgrammez.png?alt=media&token=ac392ff3-3bb4-4247-b5fd-6e621dc0948d",
+        "level": "BRONZE"
+    },
+    "CLFCOMANwMfr0d2y9pUq": {
+        "name": "Creative",
+        "url": "www.groupe-creative.fr",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FCreative.png?alt=media&token=f04203ac-f055-4f19-a387-bb5cb2b26ecf",
+        "level": "SILVER"
+    },
+    "h5IOOARamMJM12hpcWpw": {
+        "name": "Elastic",
+        "url": "elastic.co",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FElastic.svg?alt=media&token=75641efd-1f65-445d-80f3-8a6981dd6a22",
+        "level": "SILVER"
+    },
+    "QUK4crBVoxihdT54hog2": {
+        "name": "Kiabi",
+        "url": "www.kiabi-job.com/offre/",
+        "logoUrl": "https://firebasestorage.googleapis.com/v0/b/cms-devfest.appspot.com/o/editions%2FVBsJyBiyXwaM1GsDzxP7%2Fpartners%2FKiabi.jpg?alt=media&token=2d8bd359-fced-43be-b7cb-390be2587a1d",
+        "level": "SILVER"
+    }
+}

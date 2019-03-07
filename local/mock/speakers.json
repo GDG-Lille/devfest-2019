@@ -1,0 +1,48 @@
+{
+    "8jm95P60XcJaBqf8Q7lv": {
+        "displayName": "Rémi Forax",
+        "photoURL": "https://pbs.twimg.com/profile_images/3723490094/0803d7111f1d20c57b30e2d88b0377ff_400x400.jpeg",
+        "company": "Maitre de Conférence",
+        "bio": "Java Plombier, Maitre de Conférence, Virtual Machine Whisperer, martirise ses pauvres étudiants, complexifie Java en étant experts pour les JSR 292, 335 et 376, développe des librariries et langage dynamiques open source utilisés ou pas."
+    },
+    "9W7HLU4BtkAudFLNdcpu": {
+        "displayName": "Gautier Mechling",
+        "photoURL": "https://pbs.twimg.com/profile_images/1285326833/44379_424148825815_557170815_4802064_8014733_n_400x400.jpg",
+        "company": "Nilhcem",
+        "bio": "Android Crafter && Google Developer Expert IoT",
+        "github": "Nilhcem",
+        "twitter": "Nilhcem"
+    },
+    "AP4x4fjVC7OYccBuaS1p": {
+        "displayName": "Horacio Gonzalez",
+        "photoURL": "https://pbs.twimg.com/profile_images/1060157947911782401/ylAFl012_400x400.jpg",
+        "company": "OVH",
+        "bio": "Malgré ce que son accent espagnol bien prononcé peut suggérer, Horacio est arrivé en France il y a plus d'une quinzaine d'années. Passionné d'informatique, dans laquelle il est tombé depuis tout petit, il a découvert le développement web en 1997 et depuis il n'a pas arrêté de bosser autour.\n\nAprès quelques années comme tech leader de la partie frontend de @warp10io chez Cityzen Data, Horacio a rejoint [OVH](](https://twitter.com/ovh/) en janvier 2018 en tant que Developer Advocate. Il est cofondateur du FinistDevs, le JUG/GDG français le plus proche de la Silicon Valley.\n\nPassionné par le développement web et tout ce qui gravite autour des composants web, Horacio est Google Developer Expert (GDE) en Web Technologies et Flutter.",
+        "github": "LostInBrittany",
+        "twitter": "LostInBrittany"
+    },
+    "BvuJkv4xju5JdEWgNwX8": {
+        "displayName": "Katia Aresti",
+        "photoURL": "https://pbs.twimg.com/profile_images/1052902112332574722/PkV0qZPC_400x400.jpg",
+        "company": "Red Hat",
+        "bio": "Katia Aresti est développeuse java/scala chez RedHat, dans l'équipe Infinispan. Elle co-organise Duchess France depuis 2010. Elle intervient sur les sujets autour de Java, Scala, Testing, Infinspan, Vert.x, Carrière ... sous la forme de présentations formelles, open-spaces ou workshops. Elle est passionnée par l’open-source, la contribution communautaire et le théâtre.",
+        "github": "karesti",
+        "twitter": "karesti"
+    },
+    "MN09ffaUq7qgEj5GA7Gl": {
+        "displayName": "Sébastien Nahelou",
+        "photoURL": "https://pbs.twimg.com/profile_images/1006565262584188928/MGmzwaL3_400x400.jpg",
+        "company": "Zenika",
+        "bio": "Aficionado des containers depuis plus de 4 ans, j'ai fait de Kubernetes mon sujet de prédilection.",
+        "github": "snahelou",
+        "twitter": "snahelouz"
+    },
+    "Tv4iyw6WwXcCh2MhlFxj": {
+        "displayName": "Tiffany Souterre",
+        "photoURL": "https://pbs.twimg.com/profile_images/1058358980517478400/TsXyt1PY_400x400.jpg",
+        "company": "JEMS Datafactory",
+        "bio": "I love science and I love data! After finishing a PhD in genetic engineering, I continued my quest for discovering new patterns through data science and machine learning. I currently work as a Data Scientist and I play with machine learning algorithms on my free time. Someday, I wish to leverage artificial intelligence and genetics to improve people's life.",
+        "github": "amagash",
+        "twitter": "tiffanysouterre"
+    }
+}
