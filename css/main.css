@@ -640,7 +640,7 @@ div.speaker-sheet.cloud::after {
 	background-color: var(--hot-color);
 }
 
-div.speaker-sheet p.character {display: none;
+div.speaker-sheet p.character {
 	font-size: 0.9em;
 	line-height: 1.2;
 	background: url(../img/bullet.svg) no-repeat;
