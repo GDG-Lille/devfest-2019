@@ -435,8 +435,8 @@ svg.svgLibrary {display: none;}
 
 	#home #inscription {
 		position: absolute;
-		top: 63%;
-		left: 5%;
+		top: 61%;
+		left: 10%;
 		width: 6em;
 		font-size: calc(0.75em + 2vw);
 		color: var(--body-text);
