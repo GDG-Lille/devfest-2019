@@ -75,12 +75,14 @@
 						</header>
 						<div class="content">{{ speaker.bio }}</div>
 						<ul class="social">
-							<li><img src="img/twitter2.svg" alt="Twitter">
-								<a :href="`https://twitter.com/${speaker.twitter}`"
-							   v-if="speaker.twitter">{{ speaker.twitter }}</a></li>
-							<li><img src="img/github-face.svg" alt="Github">
-								<a :href="`https://github.com/${speaker.github}`"
-								v-if="speaker.github">{{ speaker.github }}</a></li>
+							<li v-if="speaker.twitter">
+								<img src="img/twitter2.svg" alt="Twitter">
+								<a :href="`https://twitter.com/${speaker.twitter}`">{{ speaker.twitter }}</a>
+							</li>
+							<li v-if="speaker.github">
+								<img src="img/github-face.svg" alt="Github">
+								<a :href="`https://github.com/${speaker.github}`">{{ speaker.github }}</a>
+							</li>
 						</ul>
 					</div>
 					<!-- /SPEAKER SHEET -->
