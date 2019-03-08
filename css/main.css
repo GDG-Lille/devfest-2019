@@ -640,7 +640,7 @@ div.speaker-sheet.cloud::after {
 	background-color: var(--hot-color);
 }
 
-div.speaker-sheet p.character {display: none;
+div.speaker-sheet p.character {
 	font-size: 0.9em;
 	line-height: 1.2;
 	background: url(../img/bullet.svg) no-repeat;
@@ -718,3 +718,60 @@ div.loader {
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
+
+
+/* -------------- AGENDA ------------- */
+
+p.decor {display: none;}
+
+div.agenda {position: relative;}
+
+section.hour {
+	display: flex;
+	position: relative;
+	padding: 0.5rem 0 0.8em;
+	margin: 0.5rem 0;
+	border-bottom: 1px solid var(--main-color);
+}
+
+	section.hour h3 {
+		flex-basis: 3em;
+		line-height: 1;
+		text-align: right;
+		margin: 0 1rem 0 0;
+	}
+		section.hour h3 a {display: none;}
+
+	section.hour .content {flex: 1;}
+
+	section.hour p {
+		width: 100%;
+		line-height: 0.5;
+		text-transform: uppercase;
+		background-color: #F4E55880;
+		background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, #EFEFEF 10px, #EFEFEF 20px);
+		padding-top: 0.3em;
+		margin-top: 0.3em;
+	}
+
+	section.hour dl + dl {
+		margin-top: 1em;
+	}
+	section.hour dt {
+		font: 0.9em var(--stack-b);
+		text-transform: uppercase;
+		margin: 0.45em 0 0.5em;
+	}
+
+	section.hour dd:first-of-type {
+		font-family: var(--stack-b);
+		line-height: 1.2;
+		color: var(--main-color-d);
+		background-color: var(--n-light);
+	}
+	section.hour dd:last-of-type {
+		font-size: 0.95em;
+		line-height: 1.45;
+		color: var(--n-dark);
+		background-color: var(--n-light);
+	}

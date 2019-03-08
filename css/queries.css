@@ -207,6 +207,15 @@
 }
 
 @media screen and (min-width: 1000px) {
+    p.decor {
+      display: block;
+      position: absolute;
+      width: 170px;
+      top: 8rem;
+      right: 10%;
+      z-index: 1010;
+    }
+    p.decor.stars {width: 300px; top: 15rem;}
 
     #agenda {width: 257px; height: 370px;}
       #agenda p {font-size: 20px; margin-left: -27px;}
@@ -226,6 +235,25 @@
       article.faq h3 {flex-basis: 30%;}
       article.faq .content {flex-basis: 60%; margin-left: 10%;}
       article p {font-size: 1.3em;}
+
+    section.hour h3 a {display: block; opacity: 0.5;}
+    section.hour .content {display: flex; flex: 1;}
+    section.hour p {
+      align-self: center;
+      font-family: var(--stack-b);
+  		text-align: center;
+      padding: 1rem 0;
+    }
+    section.hour dl {box-sizing: border-box; flex-basis: 25%;}
+    section.hour dl + dl {
+  		margin-top: 0;
+      margin-left: 2rem;
+  	}
+
+	section.hour dl:not(:only-child) {
+		border-right: 1px dotted var(--main-color);
+	}
+	section.hour .content dl:last-of-type {border: none;}
 }
 
 @media screen and (min-width: 1100px) {
