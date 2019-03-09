@@ -1,10 +1,8 @@
-const cacheName = 'devfestlille-12';
+const cacheName = 'devfestlille-13';
 
 const filesToCache = [
   '/',
   '/js/load.js',
-  '/css/main.css',
-  '/css/queries.css',
   '/css/vars.css',
   '/css/barlowsemicondensed-bold-webfont.woff',
   '/css/barlowsemicondensed-italic-webfont.woff',
