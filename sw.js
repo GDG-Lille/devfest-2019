@@ -1,4 +1,4 @@
-const cacheName = 'devfestlille-14';
+const cacheName = 'devfestlille-19';
 
 const filesToCache = [
   '/',
@@ -43,11 +43,21 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
   e.respondWith(async function() {
     const excludedUrl = excludedUrlsOfCache.find(url => e.request.url.indexOf(url) !== -1);
-    const cachedUrl = await caches.match(e.request);
-
-    if(excludedUrl || !cachedUrl) {
+    
+    if(excludedUrl) {
       return fetch(e.request);
     }
+
+    const cachedUrl = await fetch(e.request)
+    .then(response => {
+      return caches.open(cacheName).then(function(cache) {
+        cache.put(e.request, response.clone());
+        return response;
+      });
+    })
+    .catch(function() {
+      return caches.match(e.request);
+    })
 
     return cachedUrl;
   }());
