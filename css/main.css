@@ -266,6 +266,12 @@ p.copyright {
 	margin: 2rem 0;
 }
 
+div.subtitle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 aside {
 	position: relative;
 	color: var(--text-inv);
@@ -406,6 +412,16 @@ article a {
 	.sm-list a {display: block; width: 25px; height: 25px;}
 	.sm-list a:hover {background-color: transparent; animation: shake 1s;}
 
+.open-authentification-enter-active,
+.open-authentification-leave-active{
+	transition: all .3s ease;
+}
+
+.open-authentification-enter,
+.open-authentification-leave-to {
+	transform: translateY(-10px);
+	opacity: 0;
+}
 
 /* -------------------------------------------------------------------- */
 /* -------------------------- HOME ------------------------------- */

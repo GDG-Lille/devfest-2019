@@ -15,6 +15,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth__fr.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
 	<!-- GOOGLE ANALYTICS -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
 	<script>
@@ -56,7 +63,25 @@
 			<main>
 				<p class="decor"><img src="img/agenda.svg" alt="" /></p>
 
-				<h2>L'Agenda</h2>
+				<div class="subtitle">
+					<h2>L'Agenda</h2>
+					<button v-if="isLogged"
+							type="button"
+							@click="signOut">
+						Bonjour <strong>{{ user.displayName }}</strong>
+					</button>
+					<button v-else
+							type="button"
+							@click="signIn">
+						<strong>Connecte toi</strong> pour mettre en favoris des conférences
+					</button>
+				</div>
+
+				<transition name="open-authentification">
+					<div v-show="wantToSignIn">
+						<div id="firebaseui-auth-container"></div>
+					</div>
+				</transition>
 
 				<div class="loader"
 					 v-if="isLoading">
@@ -82,7 +107,21 @@
 							<dl :key="`talk_${talk.id}`"
 								v-for="talk in talks">
 								<dt>{{ rooms[talk.room] }}</dt>
-								<dd>{{ talk.title }}</dd>
+								<dd>
+									{{ talk.title }}
+									<button type="button"
+											@click="toggleBookmarkedTalk(talk)"
+											v-if="isLogged">
+										<i class="material-icons"
+										   v-if="isBookmarked(talk)">
+											bookmark
+										</i>
+										<i class="material-icons"
+											v-else>
+											bookmark_border
+										</i>
+									</button>
+								</dd>
 								<dd>{{ talk.speakers.join(' & ') }}</dd>
 							</dl>
 						</div>
@@ -123,24 +162,80 @@
 
 	<script>
 
+	const firebaseConfig = {
+		apiKey: "AIzaSyBkHBRm3kOLVpkHz8eo1i2QpjIFedZsoXM",
+		authDomain: "devfest-2019-42374.firebaseapp.com",
+		projectId: "devfest-2019-42374",
+	};
+
+	const authentificationConfig = {
+		callbacks: {
+			signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+				return false;
+			},
+		},
+		signInFlow: 'popup',
+		signInOptions: [
+			// List of OAuth providers supported.
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+			firebase.auth.GithubAuthProvider.PROVIDER_ID
+		]
+	};
+
+	firebase.initializeApp(firebaseConfig);
+	firebase.firestore().enablePersistence();
+
+	const ui = new firebaseui.auth.AuthUI(firebase.auth());
+	ui.start('#firebaseui-auth-container', authentificationConfig);
+
+	</script>
+
+	<script>
+
 	const app = new Vue({
 		el: '#wrapper',
 		data() {
 			return {
 				isLoading: false,
+				isLogged: false,
+				wantToSignIn: false,
+				user: null,
 				rooms: {
 					'room-1': 'Salle 1',
 					'room-2': 'Salle 2',
 					'room-3': 'Salle 3',
 					'room-4': 'Salle 4',
 				},
-				groupedTalks: {}
+				groupedTalks: {},
+				bookmarkedTalks: {},
 			};
 		},
 		created() {
 			this.getTalks();
+			this.checkIfLogged();
 		},
 		methods: {
+			checkIfLogged() {
+				firebase.auth()
+						.onAuthStateChanged(user => {
+							this.user = user;
+							this.isLogged = user !== null;
+
+							if(this.isLogged) {
+								this.getBookmarkedTalks();
+							} else {
+								this.bookmarkedTalks = {};
+							}
+						});
+			},
+			signIn() {
+				this.wantToSignIn = !this.wantToSignIn;
+			},
+			signOut() {
+				this.wantToSignIn = false;
+				firebase.auth()
+						.signOut();
+			},
 			getTalks() {
 				this.isLoading = true;
 
@@ -171,9 +266,44 @@
 						})
 						.catch(err => console.error(err))
 						.finally(() => this.isLoading = false);
+			},
+			getBookmarkedTalks() {
+				firebase.firestore()
+						.collection('bookmarked-talks')
+						.where('owner', '==', firebase.auth().currentUser.uid)
+						.onSnapshot(
+								(querySnapshot) => {
+									const bookmarkedTalks = {};
+									querySnapshot.forEach(doc => bookmarkedTalks[doc.id] = doc.data());
+									this.bookmarkedTalks = bookmarkedTalks;
+								},
+								err => console.error(err));
+			},
+			toggleBookmarkedTalk(talk) {
+				const bookmarkedTalkIdFound = Object.keys(this.bookmarkedTalks).find(bookmarkedTalkId => this.bookmarkedTalks[bookmarkedTalkId].talk === talk.id);
+
+				if(bookmarkedTalkIdFound) {
+					firebase.firestore()
+							.collection('bookmarked-talks')
+							.doc(bookmarkedTalkIdFound)
+							.delete()
+							.catch(err => console.error(err));
+				} else {
+					firebase.firestore()
+							.collection('bookmarked-talks')
+							.add({
+								talk: talk.id,
+								owner: firebase.auth().currentUser.uid
+							})
+							.catch(err => console.error(err));
+				}
+			},
+			isBookmarked(talk) {
+				return Object.keys(this.bookmarkedTalks).find(bookmarkedTalkId => this.bookmarkedTalks[bookmarkedTalkId].talk === talk.id) !== undefined;
 			}
 		}
-	})
+	});
+
 	</script>
 
 </body>
