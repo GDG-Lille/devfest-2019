@@ -10,19 +10,19 @@
 
 	<link href="css/main.css" rel="stylesheet" media="all" />
 	<link href="css/queries.css" rel="stylesheet" media="all" />
-	<!--script src="js/k-load.js"></script
+	<!--script src="js/k-load.js"></script-->
 
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-	<!-- GOOGLE ANALYTICS
+	<!-- GOOGLE ANALYTICS -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', 'UA-124200391-2');
-	</script> -->
+	</script>
 </head>
 
 <body>
@@ -58,280 +58,32 @@
 
 				<h2>L'Agenda</h2>
 
-				<div class="agenda">
-					<section class="hour">
-						<h3 id="h900">9:00
-							<a href="https://devfest.gdglille.org/agenda.html#h900">
-								<img src="img/link.svg" alt="Neuf Heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
+				<div class="loader"
+					 v-if="isLoading">
+				</div>
 
-					<section class="hour">
-						<h3 id="h1000">10:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1000">
-								<img src="img/link.svg" alt="Dix Heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1050">10:50
-							<a href="https://devfest.gdglille.org/agenda.html#h1050">
-								<img src="img/link.svg" alt="Dix Heures Cinquante" /></a></h3>
-						<div class="content">
+				<div class="agenda"
+					 v-else>
+					<section class="hour"
+							 :key="`h${hour}`"
+							 v-for="(talks, hour) in groupedTalks">
+						<h3 :id="`h${hour}`">
+							{{ hour }}
+							<a :href="`https://devfest.gdglille.org/agenda.html#h${hour}`">
+								<img src="img/link.svg" alt="" />
+							</a>
+						</h3>
+						<div class="content"
+							 v-if="talks[0].id.startsWith('break')">
 							<p>Pause</p>
 						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1110">11:10
-						<a href="https://devfest.gdglille.org/agenda.html#h1110">
-							<img src="img/link.svg" alt="Onze Heures Dix" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1200">12:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1200">
-								<img src="img/link.svg" alt="Midi" /></a></h3>
-						<div class="content">
-							<p>Repas</p>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1300">13:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1300">
-								<img src="img/link.svg" alt="Treize heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1400">14:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1400">
-								<img src="img/link.svg" alt="Quatorze heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd>Un titre de conf tres tres long pour passer à la ligne</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1450">14:50
-							<a href="https://devfest.gdglille.org/agenda.html#h1450">
-								<img src="img/link.svg" alt="Quatorze heures cinquante" /></a></h3>
-						<div class="content">
-							<p>Pause</p>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1510">15:10
-							<a href="https://devfest.gdglille.org/agenda.html#h1510">
-								<img src="img/link.svg" alt="Quinze heures dix" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1540">15:40
-							<a href="https://devfest.gdglille.org/agenda.html#h1540">
-								<img src="img/link.svg" alt="Quinze heures quarente" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1640">16:40
-							<a href="https://devfest.gdglille.org/agenda.html#h1640">
-								<img src="img/link.svg" alt="Seize heures quarente" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1720">17:20
-							<a href="https://devfest.gdglille.org/agenda.html#h1720">
-								<img src="img/link.svg" alt="Dixsepte heures vingt" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1820">18:20
-							<a href="https://devfest.gdglille.org/agenda.html#h18200">
-								<img src="img/link.svg" alt="Dix-huit Heures vingt" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> de clôture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
+						<div class="content"
+							v-else>
+							<dl :key="`talk_${talk.id}`"
+								v-for="talk in talks">
+								<dt>{{ rooms[talk.room] }}</dt>
+								<dd>{{ talk.title }}</dd>
+								<dd>{{ talk.speakers.join(' & ') }}</dd>
 							</dl>
 						</div>
 					</section>
@@ -368,6 +120,61 @@
     </footer>
 
 	</div> <!-- /container -->
+
+	<script>
+
+	const app = new Vue({
+		el: '#wrapper',
+		data() {
+			return {
+				isLoading: false,
+				rooms: {
+					'room-1': 'Salle 1',
+					'room-2': 'Salle 2',
+					'room-3': 'Salle 3',
+					'room-4': 'Salle 4',
+				},
+				groupedTalks: {}
+			};
+		},
+		created() {
+			this.getTalks();
+		},
+		methods: {
+			getTalks() {
+				this.isLoading = true;
+
+				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveTalks?editionId=VBsJyBiyXwaM1GsDzxP7')
+						.then(res => res.data)
+						.then(talks => {
+							// Add breaks
+							talks['break-1'] = { hour: '10:50' };
+
+							// Manage ID
+							Object.keys(talks).forEach(talkId => talks[talkId].id = talkId);
+
+							// Grouping by hour
+							const unorderedTalks = Object.values(talks).reduce((talks, talk) => {
+								if(talks[talk.hour] === undefined) {
+									talks[talk.hour] = [];
+								}
+
+								talks[talk.hour].push(talk);
+								return talks;
+							}, {});
+
+							// Sorting by hour and room
+							Object.keys(unorderedTalks).sort().forEach(hour => {
+								this.groupedTalks[hour] = unorderedTalks[hour];
+								this.groupedTalks[hour].sort((t1, t2) => t1.room.localeCompare(t2.room));
+							});
+						})
+						.catch(err => console.error(err))
+						.finally(() => this.isLoading = false);
+			}
+		}
+	})
+	</script>
 
 </body>
 </html>
