@@ -602,7 +602,11 @@ div.speaker-sheet {
 		margin-bottom: 0.5rem;
 	}
 
-	div.speaker-sheet h3 {font-size: 1.5em; margin: 0;}
+	div.speaker-sheet h3 {
+		font-size: 1.5em;
+		line-height: 1.1;
+		margin: 0 0 0.2em;
+	}
 	div.speaker-sheet .s-photo {
 		position: relative;
 		float: left;
