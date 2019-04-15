@@ -665,12 +665,12 @@ div.speaker-sheet p.character {
 }
 	p.character strong {display: block;}
 
+div.content + ul.social {margin-top: 1rem;}
 ul.social {
 	display: flex;
-	justify-content: flex-end;
 	list-style-type: none;
 }
-
+	ul.social li {font-size: 0.85em;}
 	ul.social li + li {margin-left: 2rem;}
 
 /* -------------- SPONSORS ------------- */
