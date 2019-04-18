@@ -14,6 +14,7 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
@@ -114,11 +115,11 @@
 											v-if="isLogged">
 										<i class="material-icons"
 										   v-if="isBookmarked(talk)">
-											bookmark
+											star
 										</i>
 										<i class="material-icons"
 											v-else>
-											bookmark_border
+											star_border
 										</i>
 									</button>
 								</dd>
@@ -242,21 +243,23 @@
 				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveTalks?editionId=VBsJyBiyXwaM1GsDzxP7')
 						.then(res => res.data)
 						.then(talks => {
-							// Add breaks
-							talks['break-1'] = { hour: '10:50' };
-
 							// Manage ID
 							Object.keys(talks).forEach(talkId => talks[talkId].id = talkId);
 
 							// Grouping by hour
 							const unorderedTalks = Object.values(talks).reduce((talks, talk) => {
-								if(talks[talk.hour] === undefined) {
-									talks[talk.hour] = [];
+								const hour = moment(new Date(talk.hour._seconds * 1000)).format('HH:mm');
+
+								if(talks[hour] === undefined) {
+									talks[hour] = [];
 								}
 
-								talks[talk.hour].push(talk);
+								talks[hour].push(talk);
 								return talks;
 							}, {});
+
+							// Add breaks
+							unorderedTalks['10:50'] = [{ id: 'break-1' }];
 
 							// Sorting by hour and room
 							Object.keys(unorderedTalks).sort().forEach(hour => {
