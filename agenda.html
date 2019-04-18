@@ -101,7 +101,10 @@
 						</h3>
 						<div class="content"
 							 v-if="talks[0].id.startsWith('break')">
-							<p>Pause</p>
+							<p>
+								Pause
+								<span v-if="talks[0].id.startsWith('break-lunch')">-Déjeuner</span>
+							</p>
 						</div>
 						<div class="content"
 							v-else>
@@ -260,7 +263,7 @@
 
 							// Add breaks
 							unorderedTalks['10:50'] = [{ id: 'break-1' }];
-							unorderedTalks['12:00'] = [{ id: 'break-2' }];
+							unorderedTalks['12:00'] = [{ id: 'break-lunch-1' }];
 							unorderedTalks['14:50'] = [{ id: 'break-3' }];
 							unorderedTalks['17:00'] = [{ id: 'break-4' }];
 
