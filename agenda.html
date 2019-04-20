@@ -108,9 +108,10 @@
 						</div>
 						<div class="content"
 							v-else>
+							<dl v-if="talks.length === 3"></dl>
 							<dl :key="`talk_${talk.id}`"
 								v-for="talk in talks">
-								<dt>{{ rooms[talk.room] }}</dt>
+								<dt>Salle {{ rooms[talk.room] }}</dt>
 								<dd>
 									{{ talk.title }}
 									<button type="button"
