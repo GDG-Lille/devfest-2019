@@ -394,6 +394,8 @@ article a {
 	text-align: right;
 	text-transform: uppercase;
 	margin: 1rem 0;
+	position: relative;
+	z-index: 10;
 }
 
 	.read-more a {
