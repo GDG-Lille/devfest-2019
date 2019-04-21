@@ -1,10 +1,8 @@
-const cacheName = 'devfestlille-12';
+const cacheName = 'devfestlille-19';
 
 const filesToCache = [
   '/',
   '/js/load.js',
-  '/css/main.css',
-  '/css/queries.css',
   '/css/vars.css',
   '/css/barlowsemicondensed-bold-webfont.woff',
   '/css/barlowsemicondensed-italic-webfont.woff',
@@ -45,11 +43,21 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
   e.respondWith(async function() {
     const excludedUrl = excludedUrlsOfCache.find(url => e.request.url.indexOf(url) !== -1);
-    const cachedUrl = await caches.match(e.request);
-
-    if(excludedUrl || !cachedUrl) {
+    
+    if(excludedUrl) {
       return fetch(e.request);
     }
+
+    const cachedUrl = await fetch(e.request)
+    .then(response => {
+      return caches.open(cacheName).then(function(cache) {
+        cache.put(e.request, response.clone());
+        return response;
+      });
+    })
+    .catch(function() {
+      return caches.match(e.request);
+    })
 
     return cachedUrl;
   }());

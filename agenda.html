@@ -10,19 +10,27 @@
 
 	<link href="css/main.css" rel="stylesheet" media="all" />
 	<link href="css/queries.css" rel="stylesheet" media="all" />
-	<!--script src="js/k-load.js"></script
+	<!--script src="js/k-load.js"></script-->
 
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-	<!-- GOOGLE ANALYTICS
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth__fr.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+	<!-- GOOGLE ANALYTICS -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', 'UA-124200391-2');
-	</script> -->
+	</script>
 </head>
 
 <body>
@@ -56,282 +64,70 @@
 			<main>
 				<p class="decor"><img src="img/agenda.svg" alt="" /></p>
 
-				<h2>L'Agenda</h2>
+				<div class="subtitle">
+					<h2>L'Agenda</h2>
+					<button v-if="isLogged"
+							type="button"
+							@click="signOut">
+						Bonjour <strong>{{ user.displayName }}</strong>
+					</button>
+					<button v-else
+							type="button"
+							@click="signIn">
+						<strong>Connecte toi</strong> pour mettre en favoris des conférences
+					</button>
+				</div>
 
-				<div class="agenda">
-					<section class="hour">
-						<h3 id="h900">9:00
-							<a href="https://devfest.gdglille.org/agenda.html#h900">
-								<img src="img/link.svg" alt="Neuf Heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
+				<transition name="open-authentification">
+					<div v-show="wantToSignIn">
+						<div id="firebaseui-auth-container"></div>
+					</div>
+				</transition>
+
+				<div class="loader"
+					 v-if="isLoading">
+				</div>
+
+				<div class="agenda"
+					 v-else>
+					<section class="hour"
+							 :key="`h${hour}`"
+							 v-for="(talks, hour) in groupedTalks">
+						<h3 :id="`h${hour}`">
+							{{ hour }}
+							<a :href="`https://devfest.gdglille.org/agenda.html#h${hour}`">
+								<img src="img/link.svg" alt="" />
+							</a>
+						</h3>
+						<div class="content"
+							 v-if="talks[0].id.startsWith('break')">
+							<p>
+								Pause
+								<span v-if="talks[0].id.startsWith('break-lunch')">-Déjeuner</span>
+							</p>
 						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1000">10:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1000">
-								<img src="img/link.svg" alt="Dix Heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1050">10:50
-							<a href="https://devfest.gdglille.org/agenda.html#h1050">
-								<img src="img/link.svg" alt="Dix Heures Cinquante" /></a></h3>
-						<div class="content">
-							<p>Pause</p>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1110">11:10
-						<a href="https://devfest.gdglille.org/agenda.html#h1110">
-							<img src="img/link.svg" alt="Onze Heures Dix" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1200">12:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1200">
-								<img src="img/link.svg" alt="Midi" /></a></h3>
-						<div class="content">
-							<p>Repas</p>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1300">13:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1300">
-								<img src="img/link.svg" alt="Treize heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1400">14:00
-							<a href="https://devfest.gdglille.org/agenda.html#h1400">
-								<img src="img/link.svg" alt="Quatorze heures" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd>Un titre de conf tres tres long pour passer à la ligne</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1450">14:50
-							<a href="https://devfest.gdglille.org/agenda.html#h1450">
-								<img src="img/link.svg" alt="Quatorze heures cinquante" /></a></h3>
-						<div class="content">
-							<p>Pause</p>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1510">15:10
-							<a href="https://devfest.gdglille.org/agenda.html#h1510">
-								<img src="img/link.svg" alt="Quinze heures dix" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1540">15:40
-							<a href="https://devfest.gdglille.org/agenda.html#h1540">
-								<img src="img/link.svg" alt="Quinze heures quarente" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1640">16:40
-							<a href="https://devfest.gdglille.org/agenda.html#h1640">
-								<img src="img/link.svg" alt="Seize heures quarente" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1720">17:20
-							<a href="https://devfest.gdglille.org/agenda.html#h1720">
-								<img src="img/link.svg" alt="Dixsepte heures vingt" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 400</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 300</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-							<dl>
-								<dt>Salle 200</dt>
-								<dd><span lang="en">Keynote</span> d'ouverture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
-							</dl>
-						</div>
-					</section>
-
-					<section class="hour">
-						<h3 id="h1820">18:20
-							<a href="https://devfest.gdglille.org/agenda.html#h18200">
-								<img src="img/link.svg" alt="Dix-huit Heures vingt" /></a></h3>
-						<div class="content">
-							<dl>
-								<dt>Salle 700</dt>
-								<dd><span lang="en">Keynote</span> de clôture</dd>
-								<dd>Chucky Clark &amp; Phil Pholis</dd>
+						<div class="content"
+							v-else>
+							<dl v-if="talks.length === 3"></dl>
+							<dl :key="`talk_${talk.id}`"
+								v-for="talk in talks">
+								<dt>Salle {{ rooms[talk.room] }}</dt>
+								<dd>
+									{{ talk.title }}
+									<button type="button"
+											@click="toggleBookmarkedTalk(talk)"
+											v-if="isLogged">
+										<i class="material-icons"
+										   v-if="isBookmarked(talk)">
+											star
+										</i>
+										<i class="material-icons"
+											v-else>
+											star_border
+										</i>
+									</button>
+								</dd>
+								<dd>{{ talk.speakers.join(' & ') }}</dd>
 							</dl>
 						</div>
 					</section>
@@ -368,6 +164,157 @@
     </footer>
 
 	</div> <!-- /container -->
+
+	<script>
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyBkHBRm3kOLVpkHz8eo1i2QpjIFedZsoXM",
+		authDomain: "devfest-2019-42374.firebaseapp.com",
+		projectId: "devfest-2019-42374",
+	};
+
+	const authentificationConfig = {
+		callbacks: {
+			signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+				return false;
+			},
+		},
+		signInFlow: 'popup',
+		signInOptions: [
+			// List of OAuth providers supported.
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+			firebase.auth.GithubAuthProvider.PROVIDER_ID
+		]
+	};
+
+	firebase.initializeApp(firebaseConfig);
+	firebase.firestore().enablePersistence();
+
+	const ui = new firebaseui.auth.AuthUI(firebase.auth());
+	ui.start('#firebaseui-auth-container', authentificationConfig);
+
+	</script>
+
+	<script>
+
+	const app = new Vue({
+		el: '#wrapper',
+		data() {
+			return {
+				isLoading: false,
+				isLogged: false,
+				wantToSignIn: false,
+				user: null,
+				rooms: {
+					'room-1': 'Action',
+					'room-2': 'Comédie',
+					'room-3': 'Science-Fiction',
+					'room-4': 'Thriller',
+				},
+				groupedTalks: {},
+				bookmarkedTalks: {},
+			};
+		},
+		created() {
+			this.getTalks();
+			this.checkIfLogged();
+		},
+		methods: {
+			checkIfLogged() {
+				firebase.auth()
+						.onAuthStateChanged(user => {
+							this.user = user;
+							this.isLogged = user !== null;
+
+							if(this.isLogged) {
+								this.getBookmarkedTalks();
+							} else {
+								this.bookmarkedTalks = {};
+							}
+						});
+			},
+			signIn() {
+				this.wantToSignIn = !this.wantToSignIn;
+			},
+			signOut() {
+				this.wantToSignIn = false;
+				firebase.auth()
+						.signOut();
+			},
+			getTalks() {
+				this.isLoading = true;
+
+				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveTalks?editionId=VBsJyBiyXwaM1GsDzxP7')
+						.then(res => res.data)
+						.then(talks => {
+							// Manage ID
+							Object.keys(talks).forEach(talkId => talks[talkId].id = talkId);
+
+							// Grouping by hour
+							const unorderedTalks = Object.values(talks).reduce((talks, talk) => {
+								const hour = moment(new Date(talk.hour._seconds * 1000)).format('HH:mm');
+
+								if(talks[hour] === undefined) {
+									talks[hour] = [];
+								}
+
+								talks[hour].push(talk);
+								return talks;
+							}, {});
+
+							// Add breaks
+							unorderedTalks['10:50'] = [{ id: 'break-1' }];
+							unorderedTalks['12:00'] = [{ id: 'break-lunch-1' }];
+							unorderedTalks['14:50'] = [{ id: 'break-3' }];
+							unorderedTalks['17:00'] = [{ id: 'break-4' }];
+
+							// Sorting by hour and room
+							Object.keys(unorderedTalks).sort().forEach(hour => {
+								this.groupedTalks[hour] = unorderedTalks[hour];
+								this.groupedTalks[hour].sort((t1, t2) => t1.room.localeCompare(t2.room));
+							});
+						})
+						.catch(err => console.error(err))
+						.finally(() => this.isLoading = false);
+			},
+			getBookmarkedTalks() {
+				firebase.firestore()
+						.collection('bookmarked-talks')
+						.where('owner', '==', firebase.auth().currentUser.uid)
+						.onSnapshot(
+								(querySnapshot) => {
+									const bookmarkedTalks = {};
+									querySnapshot.forEach(doc => bookmarkedTalks[doc.id] = doc.data());
+									this.bookmarkedTalks = bookmarkedTalks;
+								},
+								err => console.error(err));
+			},
+			toggleBookmarkedTalk(talk) {
+				const bookmarkedTalkIdFound = Object.keys(this.bookmarkedTalks).find(bookmarkedTalkId => this.bookmarkedTalks[bookmarkedTalkId].talk === talk.id);
+
+				if(bookmarkedTalkIdFound) {
+					firebase.firestore()
+							.collection('bookmarked-talks')
+							.doc(bookmarkedTalkIdFound)
+							.delete()
+							.catch(err => console.error(err));
+				} else {
+					firebase.firestore()
+							.collection('bookmarked-talks')
+							.add({
+								talk: talk.id,
+								owner: firebase.auth().currentUser.uid
+							})
+							.catch(err => console.error(err));
+				}
+			},
+			isBookmarked(talk) {
+				return Object.keys(this.bookmarkedTalks).find(bookmarkedTalkId => this.bookmarkedTalks[bookmarkedTalkId].talk === talk.id) !== undefined;
+			}
+		}
+	});
+
+	</script>
 
 </body>
 </html>

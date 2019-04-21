@@ -266,6 +266,12 @@ p.copyright {
 	margin: 2rem 0;
 }
 
+div.subtitle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 aside {
 	position: relative;
 	color: var(--text-inv);
@@ -388,6 +394,8 @@ article a {
 	text-align: right;
 	text-transform: uppercase;
 	margin: 1rem 0;
+	position: relative;
+	z-index: 10;
 }
 
 	.read-more a {
@@ -406,6 +414,16 @@ article a {
 	.sm-list a {display: block; width: 25px; height: 25px;}
 	.sm-list a:hover {background-color: transparent; animation: shake 1s;}
 
+.open-authentification-enter-active,
+.open-authentification-leave-active{
+	transition: all .3s ease;
+}
+
+.open-authentification-enter,
+.open-authentification-leave-to {
+	transform: translateY(-10px);
+	opacity: 0;
+}
 
 /* -------------------------------------------------------------------- */
 /* -------------------------- HOME ------------------------------- */
@@ -573,25 +591,26 @@ div.all-speakers {
 div.speaker-sheet {
 	position: relative;
 	box-sizing: border-box;
+	min-width: 265px;
 	background-color: var(--text-inv);
 	padding: 1.5rem;
 	margin-bottom: 2rem;
 	transition: all;
 }
 	div.speaker-sheet header {
-	  display: grid;
-	  grid-column-gap: 1rem;
-		grid-template-columns: auto 2fr;
-	  grid-template-rows: auto auto 1fr;
-		margin-bottom: 0.5rem;
+		text-align: center;
+		margin-bottom: 1.5rem;
 	}
 
-	div.speaker-sheet h3 {font-size: 1.5em; margin: 0;}
+	div.speaker-sheet h3 {
+		font-size: 1.5em;
+		line-height: 1.1;
+		margin: 0 0 0.2em;
+	}
 	div.speaker-sheet .s-photo {
 		position: relative;
-		float: left;
 		max-width: 100px;
-		grid-row: 1/4;
+		margin: 0 auto;
 	}
 	div.speaker-sheet .s-photo::before {
 		display: block;
@@ -643,19 +662,19 @@ div.speaker-sheet.cloud::after {
 div.speaker-sheet p.character {
 	font-size: 0.9em;
 	line-height: 1.2;
-	background: url(../img/bullet.svg) no-repeat;
-	background-size: 25px 25px;
-	padding-left: 30px;
+	background: url(../img/bullet.svg) center 5px no-repeat;
+	background-size: 15px 15px;
+	padding-top: 25px;
 }
-	p.character strong {display: block;}
 
+div.content + ul.social {margin-top: 1rem;}
 ul.social {
 	display: flex;
-	justify-content: flex-end;
 	list-style-type: none;
+	justify-content: space-between;
 }
-
-	ul.social li + li {margin-left: 2rem;}
+	ul.social li {font-size: 0.85em;}
+	ul.social li + li {margin-right: 1rem;}
 
 /* -------------- SPONSORS ------------- */
 

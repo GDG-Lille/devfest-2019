@@ -144,6 +144,18 @@
 						  </li>
 						</ul>
 					</div>
+					<div class="sponsors">
+						<h4>Soutiens</h3>
+						<ul>
+						  <li v-for="(partner, idx) in partners.contributors"
+							  :key="`partner_contributor_${idx}`">
+							  <a :href="`https://${partner.url}`">
+								  <img :src="partner.logoUrl"
+									   :alt="partner.name" />
+							  </a>
+						  </li>
+						</ul>
+					</div>
         		</div>
 			</aside>
 		</div>
@@ -220,6 +232,7 @@
 						gold: [],
 						silver: [],
 						bronze: [],
+						contributors: [],
 					}
 				};
 			},
@@ -236,6 +249,7 @@
 							this.partners.gold = Object.values(partners).filter(partner => partner.level === 'GOLD');
 							this.partners.silver = Object.values(partners).filter(partner => partner.level === 'SILVER');
 							this.partners.bronze = Object.values(partners).filter(partner => partner.level === 'BRONZE');
+							this.partners.contributors = Object.values(partners).filter(partner => partner.level === 'CONTRIBUTEUR');
 						})
 						.catch(err => console.error(err))
 						.finally(() => this.isLoading = false);

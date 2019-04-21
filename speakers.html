@@ -71,7 +71,7 @@
 							<p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
 							<h3>{{ speaker.displayName }}</h3>
 							<p class="s-job">{{ speaker.company }}</p>
-							<p class="character">Dans le rôle de <strong>{{ speaker.role }}</strong></p>
+							<p class="character" v-if="speaker.role">Dans le rôle de <strong>{{ speaker.role }}</strong></p>
 						</header>
 						<div class="content">{{ speaker.bio }}</div>
 						<ul class="social">
@@ -140,7 +140,12 @@
 
 				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7')
 						.then(res => res.data)
-						.then(speakers => this.speakers = Object.values(speakers))
+						.then(speakers => {
+							const speakersToSort = Object.values(speakers);
+							speakersToSort.sort((s1, s2) => s1.role ? s1.role.localeCompare(s2.role) : 0);
+
+							this.speakers = speakersToSort;
+						})
 						.catch(err => console.error(err))
 						.finally(() => this.isLoading = false);
 			}
