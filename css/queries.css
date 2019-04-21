@@ -264,7 +264,11 @@
   		text-align: center;
       padding: 1rem 0;
     }
-    section.hour dl {box-sizing: border-box; flex-basis: 25%;}
+    section.hour dl {
+	    box-sizing: border-box; 
+	    flex-basis: 25%;
+	    padding-right: 2rem;
+	}
     section.hour dl + dl {
   		margin-top: 0;
       margin-left: 2rem;
