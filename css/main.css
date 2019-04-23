@@ -269,8 +269,11 @@ p.copyright {
 div.subtitle {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 }
+
+	div.subtitle button {
+		padding: 0.5em;
+	}
 
 aside {
 	position: relative;
@@ -423,6 +426,84 @@ article a {
 .open-authentification-leave-to {
 	transform: translateY(-10px);
 	opacity: 0;
+}
+
+
+/* ------- MODAL ------- */
+
+.modal-like {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 400ms ease-in 0s;
+	-webkit-transition: opacity 400ms ease-in 0s;
+	-ms-transition: opacity 400ms ease-in 0s;
+	z-index: 9000;
+}
+	.modal-like .overlay a {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		color: rgba(19, 25, 31, 0);
+		background: rgba(19, 25, 31, 0.9);
+	}
+
+	.modal-like:target {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.modal-like div.content {
+		position: relative;
+		box-sizing: border-box;
+		top: -500px;
+		width: 70%;
+		max-width: 600px;
+		max-height: 80%;
+		color: #13191F;
+		background: #FFF;
+		margin: 5vmax auto;
+		box-shadow: 2px 2px 5px #000;
+		transition: all 0.4s ease-in-out;
+	}
+	.modal-like:target div.content {
+		overflow: auto;
+		top: 0;
+		padding: 2rem;
+	  transition: all 0.4s ease-in-out;
+	}
+
+	.modal-like header {margin-bottom: 2rem;}
+
+	.modal-like div.content h3 {
+		color: var(--main-dark);
+		padding-right: 40px;
+		margin-bottom: 0;
+	}
+	p.speaker {font-size: 0.9em; text-transform: uppercase;}
+
+	.modal-like div.content ol {margin: 1rem;}
+	.modal-like div.content li {margin-bottom: 0.5rem;}
+
+a.icon-close {
+	position: absolute;
+	overflow: hidden;
+	width: 35px;
+	height: 35px;
+	top: 0.5rem;
+	right: 0.5rem;
+	text-indent: 50px;
+	background: url(../img/icon-close.svg) no-repeat;
+	z-index: 1000;
 }
 
 /* -------------------------------------------------------------------- */
@@ -792,5 +873,9 @@ section.hour {
 		font-size: 0.95em;
 		line-height: 1.45;
 		color: var(--n-dark);
+		background-color: var(--n-light);
+	}
+	section.hour dd a {
+		color: var(--main-dark);
 		background-color: var(--n-light);
 	}

@@ -96,7 +96,7 @@
 						<h3 :id="`h${hour}`">
 							{{ hour }}
 							<a :href="`https://devfest.gdglille.org/agenda.html#h${hour}`">
-								<img src="img/link.svg" alt="" />
+								<img src="img/link.svg" alt="Ancre" />
 							</a>
 						</h3>
 						<div class="content"
@@ -113,7 +113,7 @@
 								v-for="talk in talks">
 								<dt>Salle {{ rooms[talk.room] }}</dt>
 								<dd>
-									{{ talk.title }}
+									<a href="#modal">{{ talk.title }}</a>
 									<button type="button"
 											@click="toggleBookmarkedTalk(talk)"
 											v-if="isLogged">
@@ -164,6 +164,21 @@
     </footer>
 
 	</div> <!-- /container -->
+
+	<div id="modal" class="modal-like">
+		<div class="overlay"><a href="#close">Fermer</a></div>
+		<div class="content">
+			<header>
+				<h3>Titre talk</h3>
+				<p class="speaker">Speaker</p>
+			</header>
+			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+				eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+				dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
+			<p><a href="#close" class="icon-close">Fermer</a></p>
+		</div>
+	</div>
 
 	<script>
 
