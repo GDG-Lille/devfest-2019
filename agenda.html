@@ -66,7 +66,7 @@
 
 				<div class="subtitle">
 					<h2>L'Agenda</h2>
-					<button v-if="isLogged"
+					<!--<button v-if="isLogged"
 							type="button"
 							@click="signOut">
 						Bonjour <strong>{{ user.displayName }}</strong>
@@ -75,7 +75,7 @@
 							type="button"
 							@click="signIn">
 						<strong>Connecte toi</strong> pour mettre en favoris des conférences
-					</button>
+					</button>-->
 				</div>
 
 				<transition name="open-authentification">
@@ -113,7 +113,10 @@
 								v-for="talk in talks">
 								<dt>Salle {{ rooms[talk.room] }}</dt>
 								<dd>
-									<a href="#modal">{{ talk.title }}</a>
+									<a @click="selectTalk(talk)"
+									   href="#modal">
+										{{ talk.title }}
+									</a>
 									<button type="button"
 											@click="toggleBookmarkedTalk(talk)"
 											v-if="isLogged">
@@ -133,6 +136,18 @@
 					</section>
 				</div>
 			</main>
+
+			<div id="modal" class="modal-like" v-if="selectedTalk !== null">
+				<div class="overlay"><a href="#close">Fermer</a></div>
+				<div class="content">
+					<header>
+						<h3>{{ selectedTalk.title }}</h3>
+						<p class="speaker">{{ selectedTalk.speakers.join(' & ') }}</p>
+					</header>
+					<p>{{ selectedTalk.abstract }}</p>
+					<p><a href="#close" class="icon-close">Fermer</a></p>
+				</div>
+			</div>
 		</div>
 
 		<hr />
@@ -164,21 +179,6 @@
     </footer>
 
 	</div> <!-- /container -->
-
-	<div id="modal" class="modal-like">
-		<div class="overlay"><a href="#close">Fermer</a></div>
-		<div class="content">
-			<header>
-				<h3>Titre talk</h3>
-				<p class="speaker">Speaker</p>
-			</header>
-			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-				eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-			<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-				dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
-			<p><a href="#close" class="icon-close">Fermer</a></p>
-		</div>
-	</div>
 
 	<script>
 
@@ -228,6 +228,7 @@
 				},
 				groupedTalks: {},
 				bookmarkedTalks: {},
+				selectedTalk: null,
 			};
 		},
 		created() {
@@ -325,6 +326,9 @@
 			},
 			isBookmarked(talk) {
 				return Object.keys(this.bookmarkedTalks).find(bookmarkedTalkId => this.bookmarkedTalks[bookmarkedTalkId].talk === talk.id) !== undefined;
+			},
+			selectTalk(talk) {
+				this.selectedTalk = talk;
 			}
 		}
 	});
