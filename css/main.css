@@ -515,13 +515,14 @@ svg.svgLibrary {display: none;}
 	position: relative;
 	background: url(../img/header_bg_sml.svg) center no-repeat;
 	background-size: cover;
-	padding: 2rem 0;
+	padding: 0 0 2rem;
 	transition: all;
 }
 
 	#home header p {font-family: var(--stack-t);}
 
 	#home #hifi {
+		display: none;
 		position: absolute;
 		width: 100%;
 		top: 0;
