@@ -144,7 +144,7 @@
 						<h3>{{ selectedTalk.title }}</h3>
 						<p class="speaker">{{ selectedTalk.speakers.join(' & ') }}</p>
 					</header>
-					<p>{{ selectedTalk.abstract }}</p>
+					<p v-html="selectedTalk.abstract"></p>
 					<p><a href="#close" class="icon-close">Fermer</a></p>
 				</div>
 			</div>
@@ -262,6 +262,13 @@
 
 				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveTalks?editionId=VBsJyBiyXwaM1GsDzxP7')
 						.then(res => res.data)
+						.then(rawTalks => {
+							Object.keys(rawTalks).forEach(talkId => {
+								rawTalks[talkId].abstract = rawTalks[talkId].abstract
+									.replace(/\n/g, '<br />');
+							});
+							return rawTalks;
+						})
 						.then(talks => {
 							// Manage ID
 							Object.keys(talks).forEach(talkId => talks[talkId].id = talkId);
