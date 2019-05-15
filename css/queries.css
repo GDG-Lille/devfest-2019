@@ -105,6 +105,7 @@
     #home #inscription a:hover {transform: none;}
 
   #home #hifi {
+    display: block;
     position: relative;
     width: 210px;
     height: 200px;
@@ -119,12 +120,13 @@
       top: 43%;
       left: 38%;
       width: 7em;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1;
       text-align: left;
       text-transform: uppercase;
+      opacity: .3;
     }
-    #home #hifi a {
+    #home #hifi a, #home #hifi span {
       display: block;
       font-size: 140%;
       color: var(--body-text);
@@ -146,8 +148,8 @@
       transform: scaleX(.5);
       opacity: 0;
     }
-    #home #hifi::before {animation: 2s 5 normal hifi;}
-    #home #hifi::after {animation: 1s 5 normal hifi;}
+    /*#home #hifi::before {animation: 2s 5 normal hifi;}
+    #home #hifi::after {animation: 1s 5 normal hifi;}*/
 
   #agenda {
     position: absolute;
