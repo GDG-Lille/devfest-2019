@@ -275,7 +275,7 @@
 
 							// Grouping by hour
 							const unorderedTalks = Object.values(talks).reduce((talks, talk) => {
-								const hour = moment(new Date(talk.hour._seconds * 1000)).format('HH:mm');
+								const hour = moment(new Date(talk.hour._seconds * 1000)).utcOffset('+0200').format('HH:mm');
 
 								if(talks[hour] === undefined) {
 									talks[hour] = [];
