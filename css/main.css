@@ -880,3 +880,20 @@ section.hour {
 		color: var(--main-dark);
 		background-color: var(--n-light);
 	}
+
+ul.legend {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	list-style-type: none;
+	text-transform: uppercase;
+	margin: 2rem 0;
+}
+	ul.legend li {
+		display: flex;
+		font-size: 0.7em;
+		margin-right: 2rem;
+		margin-bottom: 0.3em;
+	}
+		ul.legend li:last-of-type {margin-right: 0;}
+		ul.legend img {margin-right: 0.5em;}

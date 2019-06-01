@@ -66,7 +66,7 @@
 
 				<div class="subtitle">
 					<h2>L'Agenda</h2>
-					<!--<button v-if="isLogged"
+					<button v-if="isLogged"
 							type="button"
 							@click="signOut">
 						Bonjour <strong>{{ user.displayName }}</strong>
@@ -75,7 +75,7 @@
 							type="button"
 							@click="signIn">
 						<strong>Connecte toi</strong> pour mettre en favoris des conférences
-					</button>-->
+					</button>
 				</div>
 
 				<transition name="open-authentification">
@@ -83,6 +83,14 @@
 						<div id="firebaseui-auth-container"></div>
 					</div>
 				</transition>
+
+				<ul class="legend">
+					<li><img src="img/cat-bigdata.svg" alt="" /> Big Data/IA</li>
+					<li><img src="img/cat-cloud.svg" alt="" /> Cloud/Devops</li>
+					<li><img src="img/cat-discovery.svg" alt="" /> Découverte</li>
+					<li><img src="img/cat-mobile.svg" alt="" /> Mobile/IoT</li>
+					<li><img src="img/cat-web.svg" alt="" /> Web</li>
+				</ul>
 
 				<div class="loader"
 					 v-if="isLoading">
@@ -117,7 +125,7 @@
 									   href="#modal">
 										{{ talk.title }}
 									</a>
-									<!--<button type="button"
+									<button type="button"
 											@click="toggleBookmarkedTalk(talk)"
 											v-if="isLogged">
 										<i class="material-icons"
@@ -128,7 +136,7 @@
 											v-else>
 											star_border
 										</i>
-									</button>-->
+									</button>
 								</dd>
 								<dd>{{ talk.speakers.join(' & ') }}</dd>
 							</dl>
