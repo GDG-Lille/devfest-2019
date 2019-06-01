@@ -1,158 +1,187 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="keywords" content="" />
-	<link href="img/favicon.png" type="image/png" rel="icon" />
-	<title>ACTEURS : DEVFEST LILLE 2019</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="" />
+    <link href="img/favicon.png" type="image/png" rel="icon" />
+    <title>ACTEURS : DEVFEST LILLE 2019</title>
 
-	<link href="css/main.css" rel="stylesheet" media="all" />
-	<link href="css/queries.css" rel="stylesheet" media="all" />
-	<!--script src="js/k-load.js"></script-->
+    <link href="css/main.css" rel="stylesheet" media="all" />
+    <link href="css/queries.css" rel="stylesheet" media="all" />
+    <!--script src="js/k-load.js"></script-->
 
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-	<!-- GOOGLE ANALYTICS -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-124200391-2');
-	</script>
-</head>
+    <!-- GOOGLE ANALYTICS -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-124200391-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-124200391-2");
+    </script>
+  </head>
 
-<body>
-
-	<div id="container">
-
-		<!-- PAGE HEADER -->
-		<header>
-			<h1 class="p-name">
-				<!--picture>
+  <body>
+    <div id="container">
+      <!-- PAGE HEADER -->
+      <header>
+        <h1 class="p-name">
+          <!--picture>
           <source srcset="img/logo-big.svg" media="(min-width: 1000px)" />
 					<img src="img/logo.svg" alt="Devfest Lille 2019" />
 				</picture-->
-					<a href="index.html"><img src="img/logo.svg" alt="Devfest Lille 2019" /></a>
-			</h1>
+          <a href="index.html"
+            ><img src="img/logo.svg" alt="Devfest Lille 2019"
+          /></a>
+        </h1>
 
-			<p><time class="dt-start" datetime="2019-06-14">14 juin 2019</time>
-				<span class="p-location">Kinépolis</span></p>
-		</header>
+        <p>
+          <time class="dt-start" datetime="2019-06-14">14 juin 2019</time>
+          <span class="p-location">Kinépolis</span>
+        </p>
+      </header>
 
-		<nav class="main-nav">
-			<h2 class="k-skip"><a href="#wrapper">Navigation (Sauter)</a></h2>
-			<ul>
-				<li><a href="index.html">Accueil</a></li>
-				<li><a href="speakers.html" aria-current="page">Acteurs</a></li>
-				<li><a href="agenda.html">Agenda</a></li>
-			</ul>
-		</nav>
+      <nav class="main-nav">
+        <h2 class="k-skip"><a href="#wrapper">Navigation (Sauter)</a></h2>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="speakers.html" aria-current="page">Acteurs</a></li>
+          <li><a href="agenda.html">Agenda</a></li>
+        </ul>
+      </nav>
 
-		<div id="wrapper">
-			<main>
-				<p class="decor stars"><img src="img/stars.svg" alt="" /></p>
+      <div id="wrapper">
+        <main>
+          <p class="decor stars"><img src="img/stars.svg" alt="" /></p>
 
-				<h2>Les Acteurs</h2>
+          <h2>Les Acteurs</h2>
 
-				<div class="loader"
-					 v-if="isLoading">
-				</div>
+          <div class="loader" v-if="isLoading"></div>
 
-				<div class="all-speakers"
-					v-else>
-					<!-- SPEAKER SHEET/ -->
-					<div class="speaker-sheet"
-						v-for="(speaker, idx) in speakers"
-						:key="`speaker_${idx}`">
-						<header>
-							<p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
-							<h3>{{ speaker.displayName }}</h3>
-							<p class="s-job">{{ speaker.company }}</p>
-							<p class="character" v-if="speaker.role">Dans le rôle de <strong>{{ speaker.role }}</strong></p>
-						</header>
-						<div class="content">{{ speaker.bio }}</div>
-						<ul class="social">
-							<li v-if="speaker.twitter">
-								<img src="img/twitter2.svg" alt="Twitter">
-								<a :href="`https://twitter.com/${speaker.twitter}`">{{ speaker.twitter }}</a>
-							</li>
-							<li v-if="speaker.github">
-								<img src="img/github-face.svg" alt="Github">
-								<a :href="`https://github.com/${speaker.github}`">{{ speaker.github }}</a>
-							</li>
-						</ul>
-					</div>
-					<!-- /SPEAKER SHEET -->
-				</div>
+          <div class="all-speakers" v-else>
+            <!-- SPEAKER SHEET/ -->
+            <div
+              class="speaker-sheet"
+              v-for="(speaker, idx) in speakers"
+              :key="`speaker_${idx}`"
+            >
+              <header>
+                <p class="s-photo"><img :src="speaker.photoURL" alt="" /></p>
+                <h3>{{ speaker.displayName }}</h3>
+                <p class="s-job">{{ speaker.company }}</p>
+                <p class="character" v-if="speaker.role">
+                  Dans le rôle de <strong>{{ speaker.role }}</strong>
+                </p>
+              </header>
+              <div class="content">{{ speaker.bio }}</div>
+              <ul class="social">
+                <li v-if="speaker.twitter">
+                  <img src="img/twitter2.svg" alt="Twitter" />
+                  <a :href="`https://twitter.com/${speaker.twitter}`">{{
+                    speaker.twitter
+                  }}</a>
+                </li>
+                <li v-if="speaker.github">
+                  <img src="img/github-face.svg" alt="Github" />
+                  <a :href="`https://github.com/${speaker.github}`">{{
+                    speaker.github
+                  }}</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /SPEAKER SHEET -->
+          </div>
+        </main>
+      </div>
 
-			</main>
-		</div>
+      <hr />
+      <footer>
+        <div class="content">
+          <dl class="h-event">
+            <dt class="p-name">Devfest Lille 2019</dt>
+            <dd class="p-summary">
+              Une journée de conférences, de code labs et d'échanges sur les
+              sujets du web, du mobile, du cloud et des technologies Google.
+            </dd>
+            <dd>
+              <time class="dt-start" datetime="2019-06-14">14 juin 2019</time>
+            </dd>
+            <dd><a href="#" class="p-location">Kinépolis Lomme</a></dd>
+          </dl>
+          <ul class="links-list">
+            <li><a href="speakers.html" lang="en">Acteurs</a></li>
+            <li><a href="agenda.html">Agenda</a></li>
+            <li><a href="mailto:contact@gdglille.org">Contactez-nous</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="code-conduite.html">Code de conduite</a></li>
+            <li>
+              <a href="https://devfest-2018.gdglille.org/">Saison 2/ 2018</a>
+            </li>
+            <li>
+              <a href="https://devfest-2017.gdglille.org/">Saison 1/ 2017</a>
+            </li>
+          </ul>
+        </div>
+        <ul class="sm-list">
+          <li class="show-icons">
+            <a href="https://twitter.com/gdglille/"
+              ><img src="img/twitter.svg" alt="Twitter"
+            /></a>
+          </li>
+          <li class="show-icons">
+            <a href="https://www.linkedin.com/company/gdg-lille/"
+              ><img src="img/linkedin.svg" alt="LinkedIn"
+            /></a>
+          </li>
+        </ul>
+        <p class="copyright">GDG Lille, 2019</p>
+      </footer>
+    </div>
+    <!-- /container -->
 
-		<hr />
-		<footer>
-			<div class="content">
-				<dl class="h-event">
-					<dt class="p-name">Devfest Lille 2019</dt>
-					<dd class="p-summary">Une journée de
-						conférences, de code labs et d'échanges	sur les sujets du web, du mobile, du cloud et
-						des technologies Google.</dd>
-					<dd><time class="dt-start" datetime="2019-06-14">14 juin 2019</time></dd>
-					<dd><a href="#" class="p-location">Kinépolis Lomme</a></dd>
-				</dl>
-				<ul class="links-list">
-					<li><a href="speakers.html" lang="en">Acteurs</a></li>
-					<!--li><a href="agenda.html">Agenda</a></li-->
-					<li><a href="mailto:contact@gdglille.org">Contactez-nous</a></li>
-					<li><a href="faq.html">FAQ</a></li>
-					<li><a href="code-conduite.html">Code de conduite</a></li>
-					<li><a href="https://devfest-2018.gdglille.org/">Saison 2/ 2018</a></li>
-					<li><a href="https://devfest-2017.gdglille.org/">Saison 1/ 2017</a></li>
-				</ul>
-			</div>
-			<ul class="sm-list">
-				<li class="show-icons"><a href="https://twitter.com/gdglille/"><img src="img/twitter.svg" alt="Twitter" /></a></li>
-				<li class="show-icons"><a href="https://www.linkedin.com/company/gdg-lille/"><img src="img/linkedin.svg" alt="LinkedIn" /></a></li>
-			</ul>
-	    <p class="copyright">GDG Lille, 2019</p>
-    </footer>
+    <script>
+      const app = new Vue({
+        el: "#wrapper",
+        data() {
+          return {
+            isLoading: false,
+            speakers: []
+          };
+        },
+        created() {
+          this.getSpeakers();
+        },
+        methods: {
+          getSpeakers() {
+            this.isLoading = true;
 
-	</div> <!-- /container -->
+            axios
+              .get(
+                "https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7"
+              )
+              .then(res => res.data)
+              .then(speakers => {
+                const speakersToSort = Object.values(speakers);
+                speakersToSort.sort((s1, s2) =>
+                  s1.role ? s1.role.localeCompare(s2.role) : 0
+                );
 
-	<script>
-
-	const app = new Vue({
-		el: '#wrapper',
-		data() {
-			return {
-				isLoading: false,
-				speakers: []
-			};
-		},
-		created() {
-			this.getSpeakers();
-		},
-		methods: {
-			getSpeakers() {
-				this.isLoading = true;
-
-				axios.get('https://us-central1-cms-devfest.cloudfunctions.net/findAllActiveSpeakers?editionId=VBsJyBiyXwaM1GsDzxP7')
-						.then(res => res.data)
-						.then(speakers => {
-							const speakersToSort = Object.values(speakers);
-							speakersToSort.sort((s1, s2) => s1.role ? s1.role.localeCompare(s2.role) : 0);
-
-							this.speakers = speakersToSort;
-						})
-						.catch(err => console.error(err))
-						.finally(() => this.isLoading = false);
-			}
-		}
-	})
-	</script>
-
-</body>
+                this.speakers = speakersToSort;
+              })
+              .catch(err => console.error(err))
+              .finally(() => (this.isLoading = false));
+          }
+        }
+      });
+    </script>
+  </body>
 </html>

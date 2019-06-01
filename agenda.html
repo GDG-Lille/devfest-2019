@@ -87,7 +87,7 @@
 				<ul class="legend">
 					<li><img src="img/cat-bigdata.svg" alt="" /> Big Data/IA</li>
 					<li><img src="img/cat-cloud.svg" alt="" /> Cloud/Devops</li>
-					<li><img src="img/cat-discovery.svg" alt="" /> Découverte</li>
+					<li><img src="img/cat-discovery.svg" alt="" /> Backend</li>
 					<li><img src="img/cat-mobile.svg" alt="" /> Mobile/IoT</li>
 					<li><img src="img/cat-web.svg" alt="" /> Web</li>
 				</ul>
@@ -119,7 +119,14 @@
 							<dl v-if="talks.length === 3"></dl>
 							<dl :key="`talk_${talk.id}`"
 								v-for="talk in talks">
-								<dt>Salle {{ rooms[talk.room] }}</dt>
+								<dt>
+									Salle {{ rooms[talk.room] }}
+									<img v-if="talk.category === 'Big Data/IA'" src="img/cat-bigdata.svg" alt=" Big Data/IA" />
+									<img v-if="talk.category === 'Cloud/DevOps'" src="img/cat-cloud.svg" alt="Cloud/DevOps" /> 
+									<img v-if="talk.category === 'Backend'" src="img/cat-discovery.svg" alt="Backend" /> 
+									<img v-if="talk.category === 'Mobile/IoT'" src="img/cat-mobile.svg" alt="Mobile/IoT" /> 
+									<img v-if="talk.category === 'Web'" src="img/cat-web.svg" alt="Web" />
+							  </dt>
 								<dd>
 									<a @click="selectTalk(talk)"
 									   href="#modal">
@@ -171,7 +178,7 @@
 				</dl>
 				<ul class="links-list">
 					<li><a href="speakers.html" lang="en">Acteurs</a></li>
-					<!--li><a href="agenda.html">Agenda</a></li-->
+					<li><a href="agenda.html">Agenda</a></li>
 					<li><a href="mailto:contact@gdglille.org">Contactez-nous</a></li>
 					<li><a href="faq.html">FAQ</a></li>
 					<li><a href="code-conduite.html">Code de conduite</a></li>
