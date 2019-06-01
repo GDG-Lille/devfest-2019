@@ -135,6 +135,7 @@
 								</dd>
 								<dd>{{ talk.speakers.join(' & ') }}</dd>
 								<dd><button type="button"
+									class="fav"
 										@click="toggleBookmarkedTalk(talk)"
 										v-if="isLogged" aria-label="Ajouter aux favoris">
 									<i class="material-icons"
