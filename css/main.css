@@ -855,6 +855,10 @@ section.hour {
 		margin-top: 0.3em;
 	}
 
+section.hour dl {
+	display: flex;
+	flex-direction: column;
+}
 	section.hour dl + dl {
 		margin-top: 1em;
 	}
@@ -870,12 +874,18 @@ section.hour {
 		color: var(--main-color-d);
 		background-color: var(--n-light);
 	}
-	section.hour dd:last-of-type {
+	section.hour dd:nth-child(3) {
 		font-size: 0.95em;
 		line-height: 1.45;
 		color: var(--n-dark);
 		background-color: var(--n-light);
+		margin-bottom: 0.5em;
 	}
+
+	section.hour dd:last-of-type {
+		margin-top: auto;
+	}
+
 	section.hour dd a {
 		color: var(--main-dark);
 		background-color: var(--n-light);
@@ -884,7 +894,7 @@ section.hour {
 ul.legend {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-end;
+	justify-content: center;
 	list-style-type: none;
 	text-transform: uppercase;
 	margin: 2rem 0;
@@ -897,3 +907,15 @@ ul.legend {
 	}
 		ul.legend li:last-of-type {margin-right: 0;}
 		ul.legend img {margin-right: 0.5em;}
+
+button.fav {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.7);
+}
+button.fav:hover, button.fav:focus {
+	color: var(--text-inv);
+	background-color: var(--hot-color);
+	box-shadow: none;
+}

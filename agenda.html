@@ -125,20 +125,20 @@
 									   href="#modal">
 										{{ talk.title }}
 									</a>
-									<button type="button"
-											@click="toggleBookmarkedTalk(talk)"
-											v-if="isLogged">
-										<i class="material-icons"
-										   v-if="isBookmarked(talk)">
-											star
-										</i>
-										<i class="material-icons"
-											v-else>
-											star_border
-										</i>
-									</button>
 								</dd>
 								<dd>{{ talk.speakers.join(' & ') }}</dd>
+								<dd><button type="button"
+										@click="toggleBookmarkedTalk(talk)"
+										v-if="isLogged" aria-label="Ajouter aux favoris">
+									<i class="material-icons"
+										 v-if="isBookmarked(talk)">
+										star
+									</i>
+									<i class="material-icons"
+										v-else>
+										star_border
+									</i>
+								</button></dd>
 							</dl>
 						</div>
 					</section>

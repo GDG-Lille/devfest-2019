@@ -50,6 +50,7 @@
 	    min-height: 2em;
 	    align-self: end;
 	}
+  ul.legend {justify-content: flex-end;}
 
 }
 
